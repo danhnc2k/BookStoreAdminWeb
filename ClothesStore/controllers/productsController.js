@@ -28,5 +28,13 @@ exports.store = (req, res, next) => {
     }
     const newProduct = new productsModel(req.body)
     newProduct.save()
-    res.redirect("/products")
+    .then(() => res.redirect("/products"))
+    .catch(next)
+};
+
+exports.delete = (req, res, next) => {
+    console.log("delete")
+    const deleteProduct = productsModel.deleteOne({_id : req.params.id})
+    .then(() => res.redirect("/products"))
+    .catch(next)
 };
