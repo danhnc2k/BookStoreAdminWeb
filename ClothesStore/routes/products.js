@@ -5,6 +5,8 @@ const productsController = require('../controllers/productsController');
 /* GET list of books. */
 router.get('/', productsController.index);
 router.get('/:slug/detail', productsController.detail);
+router.get('/create', productsController.create);
+router.post('/store', productsController.store);
 
 
 module.exports = router;
