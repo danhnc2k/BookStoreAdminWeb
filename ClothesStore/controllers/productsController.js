@@ -5,3 +5,9 @@ exports.index = (req, res, next) => {
         .then(products => res.render("products/products",{products}))
         .catch(next)
 };
+
+exports.detail = (req, res, next) => {
+    const productdetail = productsModel.find({slug: req.params.slug})
+        .then(product => res.render("products/productDetail",{product}))
+        .catch(next)
+};
