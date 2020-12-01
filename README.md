@@ -1,2 +1,2 @@
 # BookStoreAdminWeb
-Demo trang web bán sách dưới view Admin
+Demo trang web bán quần áo dưới view Admin
