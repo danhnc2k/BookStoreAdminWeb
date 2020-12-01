@@ -33,8 +33,46 @@ exports.store = (req, res, next) => {
 };
 
 exports.delete = (req, res, next) => {
-    console.log("delete")
     const deleteProduct = productsModel.deleteOne({_id : req.params.id})
     .then(() => res.redirect("/products"))
     .catch(next)
 };
+
+exports.edit = (req, res, next) => {
+    productsModel.findById(req.params.id)
+        .then(product => {
+            var checkedMen=""
+            var checkedWomen=""
+            var checkedKids=""
+            if (product.men == true) {
+                checkedMen = "checked"
+            }
+            if (product.women == true) {
+                checkedWomen = "checked"
+            }
+            if (product.kids == true) {
+                checkedKids = "checked"
+            }
+            res.render("products/changed", {product, checkedKids, checkedMen, checkedWomen})})
+        .catch(next)
+};
+
+exports.update = (req, res, next) => {
+    if (req.body.men == "on") {
+        req.body.men = true
+    }
+    if (req.body.women == "on") {
+        req.body.women = true
+    }
+    if (req.body.kids == "on") {
+        req.body.kids = true
+    }
+    const deleteProduct = productsModel.updateOne({_id : req.params.id}, req.body)
+    .then(() => res.redirect("/products"))
+    .catch(next)
+};
+
+
+
+
+

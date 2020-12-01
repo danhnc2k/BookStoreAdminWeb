@@ -1,0 +1,52 @@
+<div id="page"> 
+  
+  <!-- Main Container -->
+  <section class="main-container col1-layout bounceInUp animated">
+    <div class="main container">
+      <div class="account-login">
+        <div class="page-title">
+          <h1>Create a Product</h1>
+        </div>
+        <fieldset class="col2-set">
+          <form method="POST" action="/products/{{product._id}}?_method=PUT">
+        <div class="form-group">
+            <label for="name">Tên sản phẩm</label>
+            <input type="text" class="form-control" name="name" id="name" value="{{product.name}}">
+        </div>
+        <div class="form-group">
+            <label for="price">Giá sản phẩm (VNĐ)</label>
+            <input type="number" class="form-control" name="price" id="price" value="{{product.price}}">
+        </div>
+        <div class="form-group">
+            <label for="image">Link ảnh sản phẩm</label>
+            <input type="text" class="form-control" name="image" id="image" value="{{product.image}}">
+        </div>
+        <div class="form-group">
+            <label for="description">Mô tả sản phẩm</label>
+            <textarea class="form-control" name="description" id="description" rows="3"> {{product.description}}</textarea>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" name="men" id="men" {{checkedMen}}>
+            <label class="form-check-label" for="men">Men</label>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" name="women" id="women" {{checkedWomen}}>
+            <label class="form-check-label" for="women">Women</label>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" name="kids" id="kids" {{checkedKids}}>
+            <label class="form-check-label" for="kids">Kids</label>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Submit">
+    </form>
+        </fieldset>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+  </section>
+  <!-- Main Container End --> 
+</div>
