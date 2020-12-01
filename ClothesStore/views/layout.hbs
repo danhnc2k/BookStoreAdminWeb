@@ -146,12 +146,11 @@
                                 <div class="toplinks">
                                     <div class="links">
 
-                                        <div class="myaccount"><a title="My Account" href="login.html"><span class="hidden-xs">My Account</span></a></div>
-                                        <div class="check"><a title="Checkout" href="checkout.html"><span class="hidden-xs">Checkout</span></a></div>
-                                        <div class="demo"><a title="Blog" href="blog.html"><span class="hidden-xs">Blog</span></a></div>
+                                        <div class="myaccount"><a title="My Account" href="/me/account-info"><span class="hidden-xs">My Account</span></a></div>
+                                        <div class="check"><a title="Checkout" href="/checkout"><span class="hidden-xs">Checkout</span></a></div>
                                         <!-- Header Company -->
                                         <!-- End Header Company -->
-                                        <div class="login"><a href="login.html"><span class="hidden-xs">Log In</span></a></div>
+                                        <div class="login"><a href="/login"><span class="hidden-xs">Log In</span></a></div>
 
                                     </div>
 
@@ -179,70 +178,47 @@
 
                 <ul class="nav hidden-xs menu-item menu-item-left">
                     <li class="level0 parent drop-menu active">
-                        <a href="index.html"><span>Home</span></a>
+                        <a href="/"><span>Home</span></a>
                     </li>
                     <li class="level0 parent drop-menu">
                         <a href="#"><span>Pages</span> </a>
                         <ul class="level1" style="display: none;">
-                            <li class="level1 first"><a href="grid"><span>Grid</span></a></li>
-                            <li class="level1 nav-10-2"> <a href="list"> <span>List</span> </a> </li>
-                            <li class="level1 nav-10-3"> <a href="product_detail"> <span>Product Detail</span> </a> </li>
-                            <li class="level1 nav-10-4"> <a href="shopping_cart"> <span>Shopping Cart</span> </a> </li>
+                            <li class="level1 nav-10-2"> <a href="/products"> <span>All products</span> </a> </li>
+                            <li class="level1 nav-10-4"> <a href="/cart"> <span>Shopping Cart</span> </a> </li>
+                            <li class="level1 first parent"> <a href="/checkout"><span>Checkout</span></a> </li>
+                            <li class="level1 nav-10-4"> <a href="/wishlist"> <span>Wishlist</span> </a> </li>
                             <li class="level1 first parent">
-                                <a href="checkout.html"><span>Checkout</span></a>
+                                <a href="/me/dashboard"><span>Dashboard</span></a>
                                 <!--sub sub category-->
                                 <ul class="level2 right-sub" style="top: 0px; left: 165px; display: none;">
-                                    <li class="level2 nav-2-1-1 first"><a href="checkout_method.html"><span>Checkout Method</span></a></li>
-                                    <li class="level2 nav-2-1-5 last"><a href="checkout_billing_info.html"><span>Checkout Billing Info</span></a></li>
+                                    <li class="level2 nav-2-1-1 first"><a href="/me/account-info"><span>Account Information</span></a></li>
+                                    <li class="level2 nav-2-1-5 last"><a href="/me/address-book"><span>Address Book</span></a></li>
+                                    <li class="level2 nav-2-1-1 first"><a href="/me/contact-info"><span>Contact Information</span></a></li>
                                 </ul>
                                 <!--sub sub category-->
                             </li>
-                            <li class="level1 nav-10-4"> <a href="wishlist.html"> <span>Wishlist</span> </a> </li>
-                            <li class="level1 first parent">
-                                <a href="dashboard.html"><span>Dashboard</span></a>
-                                <!--sub sub category-->
-                                <ul class="level2 right-sub" style="top: 0px; left: 165px; display: none;">
-                                    <li class="level2 nav-2-1-1 first"><a href="account_information.html"><span>Account Information</span></a></li>
-                                    <li class="level2 nav-2-1-5 last"><a href="address_book.html"><span>Address Book</span></a></li>
-                                    <li class="level2 nav-2-1-1 first"><a href="contact_information.html"><span>Contact Information</span></a></li>
-                                </ul>
-                                <!--sub sub category-->
-                            </li>
-                            <li class="level1"> <a href="multiple_addresses.html"> <span>Multiple Addresses</span> </a> </li>
-                            <li class="level1"> <a href="about_us.html"> <span>About us</span> </a> </li>
-
-                            <li class="level1"> <a href="faq.html"> <span>FAQ</span> </a> </li>
-                            <li class="level1"> <a href="login.html"> <span>Login</span> </a> </li>
-                            <li class="level1"> <a href="forgot_password.html"> <span>Forgot Password</span> </a> </li>
-                            <li class="level1"> <a href="quick_view.html"> <span>Quick view </span> </a> </li>
-                            <li class="level1 first parent">
-                                <a href="blog.html"><span>Blog</span></a>
-                                <ul class="level2 right-sub" style="top: 0px; left: 165px; display: none;">
-                                    <li class="level2 nav-2-1-1 first"><a href="blog_detail.html"><span>Blog Detail</span></a></li>
-                                </ul>
-                            </li>
-                            <li class="level1"><a href="contact_us.html"><span>Contact us</span></a> </li>
-                            <li class="level1"><a href="404error.html"><span>404 Error Page</span></a> </li>
+                            <li class="level1"> <a href="/about_us"> <span>About us</span> </a> </li>
+                            <li class="level1"> <a href="/faq"> <span>FAQ</span> </a> </li>
+                            <li class="level1"> <a href="/login"> <span>Login</span> </a> </li>
+                            <li class="level1"> <a href="/login/forgot-password"> <span>Forgot Password</span> </a> </li>
+                            <li class="level1"><a href="/contact-us"><span>Contact us</span></a> </li>
                         </ul>
                     </li>
                     <li class="level0 parent drop-menu active">
-                        <a href="/"><span>All Products</span></a>
+                        <a href="/products"><span>All Products</span></a>
                     </li>
                 </ul>
                 <ul class="nav hidden-xs menu-item menu-item-right">
                     <li class="mega-menu">
-                        <a href="grid.html" class="level-top"><span>Women</span></a>
+                        <a href="/products/women" class="level-top"><span>Women</span></a>
                     </li>
                     <li class="mega-menu">
-                        <a href="grid.html" class="level-top"><span>Men</span></a>
+                        <a href="/products/men" class="level-top"><span>Men</span></a>
                     </li>
                     <li class="mega-menu">
-                        <a href="grid.html" class="level-top"><span>Kid</span></a>
+                        <a href="/products/kids" class="level-top"><span>Kids</span></a>
                     </li>
                 </ul>
-
-
-
             </div>
         </nav>
 {{{body}}}
@@ -325,17 +301,15 @@
                                 <h4>CUSTOMMER SERVICE</h4>
                                 <ul class="links">
                                     <li class="first"><a href="#" title="Contact us">My Account</a></li>
-                                    <li><a href="#" title="About us">Order History</a></li>
-                                    <li><a href="#" title="faq">FAQ</a></li>
-                                    <li><a href="#" title="Popular Searches">Specials</a></li>
-                                    <li class="last"><a href="#" title="Where is my order?">Help Center</a></li>
+                                    <li><a href="/me/account-info" title="About us">Order History</a></li>
+                                    <li><a href="/faq" title="faq">FAQ</a></li>
 
                                 </ul>
                             </div>
                             <div class="footer-column pull-left">
                                 <h4>Corporation</h4>
                                 <ul class="links">
-                                    <li class="first"><a title="Your Account" href="#">About us</a></li>
+                                    <li class="first"><a title="Your Account" href="/about-us">About us</a></li>
                                     <li><a title="Information" href="#">Customer Service</a></li>
                                     <li><a title="Addresses" href="#">Company</a></li>
                                     <li><a title="Addresses" href="#">Investor Relations</a></li>
@@ -350,7 +324,7 @@
                                     <li><a href="#" title="Blog">Blog</a></li>
                                     <li><a href="#" title="Company">Company</a></li>
                                     <li><a href="#" title="Investor Relations">Investor Relations</a></li>
-                                    <li class=" last"><a href="contact-us.html" title="Suppliers">Contact Us</a></li>
+                                    <li class=" last"><a href="/contact-us" title="Suppliers">Contact Us</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -421,7 +395,7 @@
       </div>
     </li>
     <li>
-      <div class="home"><a href="#"><i class="icon-home"></i>Home</a> </div>
+      <div class="home"><a href="/"><i class="icon-home"></i>Home</a> </div>
     </li>
     <li><a href="#">Pages</a>
       <ul>
