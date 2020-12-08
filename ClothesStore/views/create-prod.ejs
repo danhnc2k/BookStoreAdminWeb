@@ -238,7 +238,6 @@
       const file = this.files[0];
       if (file) {
         const reader = new FileReader();
-        alert("a");
         previewImage.style.display = "block";
         previewDefaultText.style.display = "none";
         reader.addEventListener("load", function(){
@@ -249,5 +248,27 @@
         reader.readAsDataURL(file);
       }
     });
+    function selectType() {
+      const ProductType = document.getElementById("ProductType").value;
+      const PhuKien = document.getElementById("ProductSubTypePhuKien");
+      const Ao = document.getElementById("ProductSubTypeAo");
+      const Quan = document.getElementById("ProductSubTypeQuan");
+
+      if (ProductType == "Phụ Kiện"){
+        PhuKien.style.display = "block";
+        Ao.style.display = "none";
+        Quan.style.display = "none";
+      }
+      else if (ProductType == "Áo"){
+        PhuKien.style.display = "none";
+        Ao.style.display = "block";
+        Quan.style.display = "none";
+      }
+      else if (ProductType == "Quần"){
+        PhuKien.style.display = "none";
+        Ao.style.display = "none";
+        Quan.style.display = "block";
+      }
+    }
   </script>
 </html>

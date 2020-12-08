@@ -23,7 +23,7 @@ router.get("/create-prod", productController.getCreatePro);
 
 router.post("/store-prod", productController.PostStorePro);
 
-//router.post("/create-prod", productController.postCreatePro);
+router.post("/create-prod", productController.postCreatePro);
 
 router.get("/shopping_cart", productController.getCart);
 
@@ -38,6 +38,8 @@ router.post("/add-order", productController.postAddOrder);
 router.get("/delete-cart", productController.getDeleteCart);
 
 router.get("/delete-item/:productId", productController.getDeleteItem);
+
+router.get("/delete-prod/:productId", productController.getDeleteProduct);
 
 router.get("/merge-cart", productController.mergeCart);
 

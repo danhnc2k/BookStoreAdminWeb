@@ -277,7 +277,7 @@
 												<div class="tt-row-btn">
 													
 													<a href="/create-prod/<%= prod._id %>/edit" type="button" class="btn btn-primary">Sửa</a>
-													<a class="btn btn-danger" onclick="deleteProduct()"'>Xóa</a>
+													<a class="btn btn-danger"  href="/delete-prod/<%= prod._id %>" >Xóa</a>
 												</div>
 												<div class="tt-row-btn">
 													
@@ -422,12 +422,7 @@
     <% include partials/footer %>
 </footer>
 
-<script>
-	var result = confirm("Want to delete?");
-	if (result) {
-		//Logic to delete the item
-	}
-</script>
+
 <a href="#" class="tt-back-to-top">BACK TO TOP</a>
 <!-- Partials -->
 <% include partials/modal-addtocartproduct %>

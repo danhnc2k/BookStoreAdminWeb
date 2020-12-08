@@ -6,6 +6,7 @@ const Order = require("../models/order");
 const Label = require("../models/label");
 const { render } = require("ejs");
 const formidable = require('formidable');
+const fs = require('fs');
 
 var ITEM_PER_PAGE = 12;
 var SORT_ITEM;
@@ -109,7 +110,8 @@ exports.PostStorePro = (req, res, next) => {
     };
     if (fields.ProductType == "Quần") {
       sub = fields.ProductSubTypeQuan;
-    };
+      };
+
     var type = {
       main: fields.ProductType,
       sub: sub,
@@ -135,13 +137,25 @@ exports.PostStorePro = (req, res, next) => {
   });
 };
 
-/*exports.postCreatePro = (req, res, next) => {
-    passport.authenticate("local-signup", {
-        successReturnToOrRedirect: "/verify-email",
-        failureRedirect: "/create-account",
-        failureFlash: true
-    })(req, res, next);
-};*/
+module.exports.postCreatePro = (req, res, next) => {
+    const form = formidable({ multiples: true });
+    form.parse(req,(err, fields, files) => {
+        if (err) {
+            next(err);
+            return;
+        }
+        const ProductImage = files.ProductImage;
+        if (ProductImage && ProductImage.size > 0) {
+            const FileName = ProductImage.path.split('/').pop() + '.' + ProductImage.name.split('.').pop();
+            fs.renameSync(ProductImage.path, process.env.BOOK_IMAGE_FOLDER+ '/' + FileName)
+            fields.images = '/images/products/' + FileName;
+        }
+       
+        product.modifyProduct(fields.id, fields).then(() => {
+            res.redirect("/products");
+        });
+    });
+};
 
 exports.getProduct = (req, res, next) => {
   var cartProduct;
@@ -410,7 +424,20 @@ exports.modifyCart = (req, res, next) => {
     res.redirect("back");
   });
 };
-
+exports.getDeleteProduct = (req, res, next) => {
+    var result = confirm("Want to delete?");
+    var prodId = req.params.productId;
+    var List = new Products (req.products ? req.products : {});
+    Products.findById(prodId, (err, product) => {
+        if (err) {
+            return res.redirect("back");
+        }
+        List.deleteItem(prodId);
+        req.products = List;
+        console.log(req.products);
+        res.redirect("back");
+    });
+};
 exports.getDeleteCart = (req, res, next) => {
   req.session.cart = null;
   if (req.user) {

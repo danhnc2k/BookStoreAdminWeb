@@ -127,6 +127,24 @@ const productSchema = new Schema({
     ]
   }
 });
+module.exports = function Products(ProdID) {
+    this.deleteItem = id => {
+        delete this;
+    };
+};
+
+
+module.exports.modifyProduct = async (id, product) => {
+    
+    try {
+        if (id)
+            product.images = product.images.split(",");
+    } catch (error) {
+        console.log("error ", error);
+    }
+    
+}
+ 
 
 const index = {
   name: "text",
