@@ -1,10 +1,11 @@
-const products = require('../model/product')
-const mongoose = require('mongoose');
+const products = require('../product')
 
 exports.listProducts = async function(filter, pageNumber, itemPerPage){
-    const listProducts = await products.paginate(filter, {
-        page: pageNumber,
-        limit: itemPerPage
-    });
-    return listProducts;
+    const list = await products.paginate(filter, 
+        {
+            page: pageNumber,
+            limit: itemPerPage
+        }
+    );
+    return list;
 }

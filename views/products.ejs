@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head.ejs') %>
+  </head>
+  <body>
+      <body class="nav-md">
+        <div class="container body">
+            <div class="main_container">
+                <%- include('partials/navigation.ejs') %>
+                <div class="right_col" role="main" style="min-height: 454px;">
+                    <div class="">
+                        <div class="page-title">
+                            <div class="title_left">
+                                <h3>Users <small>Some examples to get you started</small></h3>
+                            </div>
+        
+                            <div class="title_right">
+                                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for...">
+                                        <span class="input-group-btn">
+                              <button class="btn btn-secondary" type="button">Go!</button>
+                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="clearfix"></div>
+        
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Default Example <small>Users</small></h2>
+        
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="card-box table-responsive">
+                                                    <p class="text-muted font-13 m-b-30">
+                                                        DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>
+                                                    </p>
+                                                    <div>
+                                                        <div class="tt-collapse open">
+                                                            <h3 class="tt-collapse-title">Loại sản phẩm</h3>
+                                                            <div class="tt-collapse-content">
+                                                                <ul class="tt-list-row" id="product-size">
+                                                                    
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tt-collapse open">
+                                                            <h3 class="tt-collapse-title">Lọc theo giá</h3>
+                                                            <div class="tt-collapse-content">
+                                                                <ul class="tt-list-row" id="product-price">
+                                                                    <li><input type="radio" name="price" value="50">$0 — $50</li>
+                                                                    <li><input type="radio" name="price" value="100">$50 — $100</li>
+                                                                    <li><input type="radio" name="price" value="150">$100 — $150</li>
+                                                                    <li><input type="radio" name="price" value="200">$150 —  $200</li>
+                                                                    <li><input type="radio" name="price" value="1000000">>$200</li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tt-collapse open">
+                                                            <h3 class="tt-collapse-title">Lọc theo kích thước</h3>
+                                                            <div class="tt-collapse-content">
+                                                                <ul class="tt-list-row" id="product-size">
+                                                                    <li><input type="radio" name="size" value="S"> S</li>
+                                                                    <li><input type="radio" name="size" value="M"> M</li>
+                                                                    <li><input type="radio" name="size" value="L"> L</li>
+                                                                    <li><input type="radio" name="size" value="XL"> XL</li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tt-collapse open">
+                                                            <h3 class="tt-collapse-title">Thương Hiệu</h3>
+                                                            <div class="tt-collapse-content">
+                                                                <ul class="tt-list-row" id="product-size">
+                                                                    
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-plus">
+                                                        </i> Thêm
+                                                   </button>
+                                                   <button type="button" class="btn btn-success btn-sm"> <i class="fa fa-trash">
+                                                   </i></button>
+                                                    </div>
+                                                    <div id="datatable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap no-footer">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="dataTables_length" id="datatable_length">
+                                                                    <label>
+                                                                        Show
+                                                                        <select name="datatable_length" aria-controls="datatable" class="form-control input-sm">
+                                                                            <option value="10">10</option>
+                                                                            <option value="25">25</option>
+                                                                            <option value="50">50</option>
+                                                                            <option value="100">100</option>
+                                                                        </select> entries
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div id="datatable_filter" class="dataTables_filter">
+                                                                    <label>
+                                                                        Search:
+                                                                        <input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable">
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <table id="datatable" class="table table-striped table-bordered dataTable no-footer" style="width:100%" role="grid" aria-describedby="datatable_info">
+                                                                    <thead>
+                                                                    <tr role="row">
+                                                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 128px;">
+                                                                            Name
+                                                                        </th>
+                                                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 210px;">
+                                                                            Position
+                                                                        </th>
+                                                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 93px;">
+                                                                            Office
+                                                                        </th>
+                                                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 42px;">
+                                                                            Age
+                                                                        </th>
+                                                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 85px;">
+                                                                            Start date
+                                                                        </th>
+                                                                        <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 71px;">
+                                                                            Salary
+                                                                        </th>
+                                                                    </tr>
+                                                                    </thead>
+        
+        
+                                                                    <tbody>
+                                                                    <% allProducts.forEach(function(product){%>
+                                                                    <tr>
+                                                                        <td><%= product.name %></td>
+                                                                        <td><%= product.stock %></td>
+                                                                        <td><%= product.price %></td>
+                                                                        <td><%= product.dateAdded%></td>
+                                                                        <td><%= product.sale %></td>
+                                                                        <td><%= product.buyCounts %></td>
+                                                                    </tr>
+                                                                    <% }); %>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+                                                            </div>
+                                                            <div class="col-sm-7">
+                                                                <nav aria-label="Page navigation example">
+                                                                    <ul class="pagination justify-content-end">
+                                                                        <li class="page-item"><a class="page-link" href="/products/?page=1">First Page</a></li>
+                                                                        <% if(hasPrevPage){ %>
+                                                                        <li class="page-item"><a class="page-link" href="/products/?page=<%= prevPage %>">Previous</a></li>
+                                                                        <li class="page-item"><a class="page-link" href="/products/?page=<%= currentPage - 1 %>"><%= currentPage - 1 %></a></li>
+                                                                        <% } %>
+                                                                        <li class="page-item"><a class="page-link" href="/products/?page=<%= currentPage %>"><%= currentPage %></a></li>
+                                                                        <% if(hasNextPage){ %>
+                                                                        <li class="page-item"><a class="page-link" href="/products/?page=<%= currentPage + 1 %>"><%= currentPage + 1 %></a></li>
+                                                                        <li class="page-item"><a class="page-link" href="/products/?page=<%= nextPage %>">Next</a></li>
+                                                                        <% } %>
+                                                                        <li class="page-item"><a class="page-link" href="/products/?page=<%= totalPages %>">Last Page</a></li>
+                                                                    </ul>
+                                                                </nav>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                        </div>
+                </div>
+            </div>
+        </div
+      </body>
+    
+    <footer>
+        <%- include('partials/footer.ejs') %>
+    </footer>
+  </body>
+  
+</html>
