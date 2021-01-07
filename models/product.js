@@ -3,7 +3,8 @@ const paginate = require('mongoose-paginate-v2');
 
 const schema = mongoose.Schema;
 
-const productSchema = new schema({
+const productSchema = new schema(
+  {
     name: {
       type: String,
       required: true
@@ -25,7 +26,7 @@ const productSchema = new schema({
       type: [String],
       required: true
     },
-    productType: {
+    category: {
       main: String,
       sub: String
     },
@@ -119,12 +120,10 @@ const productSchema = new schema({
   {
     collection: 'Products'
   }
-  );
-
-
+);
 
 productSchema.plugin(paginate);
 
-  const ProductModel = mongoose.model("Product", productSchema,"Products");
+const ProductModel = mongoose.model("Product", productSchema);
 
-  module.exports = ProductModel;
+module.exports = ProductModel;

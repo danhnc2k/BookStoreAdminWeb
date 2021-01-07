@@ -9,9 +9,8 @@ const logger = require('morgan');
 
 
 
-const indexRouter = require('./routes/admin');
-const usersRouter = require('./routes/users');
 const productRouter = require('./routes/product');
+const authorRouter = require('./routes/author');
 
 const app = express();
 
@@ -28,9 +27,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //use Routers
-app.use(indexRouter);
-app.use(usersRouter);
 app.use(productRouter);
+app.use(authorRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
