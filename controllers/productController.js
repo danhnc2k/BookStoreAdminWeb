@@ -76,23 +76,49 @@ exports.getIndex = async function(req, res, next){
 }
 
 exports.getProductDetail = async function(req, res, next){
+    const categoriesList = await categoryServices.listCategories();
     const product = await productServices.getProduct(req.params.id);
-    const imageList = product.images;
+    let sizeStr="";
+    product.size.forEach(element => {
+        sizeStr += element+';';
+    });
+    let colorStr="";
+    product.color.forEach(element => {
+        colorStr += element+';';
+    });
+    let imageStr="";
+    product.images.forEach(element => {
+        imageStr += element+';';
+    });
+    let materialStr="";
+    product.materials.forEach(element => {
+        materialStr += element+';';
+    });
+
     res.render('detail',{
+        categories: categoriesList,
+        id: product._id,
         name: product.name,
         description: product.description,
-        sizes: product.size,
-        mainCategory: product.category.main,
+        sizes: sizeStr,
         subCategory: product.category.sub,
         stock: product.stock,
         price: product.price,
         sale: product.sale,
-        color: product.color,
-        pattern: product.pattern,
-        images: imageList,
-        materials: product.materials,
-        buyCounts: product.buyCounts,
+        colors: colorStr,
+        images: imageStr,
+        imagesURL: product.images,
+        materials: materialStr,
+        buyCount: product.buyCounts,
+        label: product.labels
     });
+}
+
+exports.postUpdate = async function(req, res, next){
+    await productServices.update(req.body.id,req.body.name,req.body.description,req.body.size,
+        req.body.subCategory,req.body.stock,req.body.price,req.body.sale,req.body.color,
+        req.body.image,req.body.material,req.body.buyCount,req.body.label);
+    res.redirect('/');
 }
 
 exports.getDelivered = async function(req, res, next){
@@ -141,4 +167,9 @@ exports.getDeliversoon = async function(req, res, next){
         currentPage: paginate.page,
         totalPages: paginate.totalPages
     });
+}
+
+exports.postABC = async function(req, res, next){
+    const abc = 'abc';
+    redirect('/');
 }
