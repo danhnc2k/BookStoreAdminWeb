@@ -1,8 +1,6 @@
 const categories = require('../category');
 
 exports.listCategories = async function(){
-    const list = await categories.find(err => {
-        console.log("Error loading categories!!!");
-    });
+    const list = await categories.find();
     return list;
 }

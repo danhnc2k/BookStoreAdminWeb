@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include partials/head.ejs %>
+  </head>
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <% include partials/navigation.ejs %>
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>E-commerce :: Product Page</h3>
+              </div>
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5  form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>E-commerce page design</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Settings 1</a>
+                            <a class="dropdown-item" href="#">Settings 2</a>
+                          </div>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div class="col-md-5">
+                      <div class="product-images">
+                        <% var index; for (index = 0; index < images.length; index++){ %>
+                          <a>
+                            <img src="../images/product/<%= images[index] %>" alt="..." / width="500" height="600">
+                          </a>
+                        <% } %>
+                      </div>
+                    </div>
+                    <div class="col-md-5">
+                      <div class="container">
+                        <h3 align="center">Update Product</h3>
+                        <hr>
+                            <form action="/update/update-database" method="POST">
+                              <div class="form-group">
+                                <label for="">ID</label>
+                                <input type="text" class="form-control" id="" placeholder="" name="id" value="{{laptop._id}}" readonly>
+                              </div>
+                              <div class="form-group">
+                                <label for="">Name</label>
+                                <input type="text" class="form-control" id="" placeholder="" name="name" value="{{laptop.name}}">
+                              </div>
+                              {{!-- <div class="form-group">
+                                <label for="">Description</label>
+                                <input type="text" class="form-control" id="" placeholder="" name="Info">
+                              </div> --}}
+                              <div class="form-group">
+                                <label for="">Sizes</label>
+                                <input type="text" class="form-control" id="" placeholder="" name="cpu" value="{{laptop.cpu}}">
+                              </div>
+                              <div class="form-group">
+                                <label for="">Image Link</label>
+                                <input type="text" class="form-control" id="" placeholder="" name="Image" value="{{laptop.image}}" onchange="ChangeImage(this.value)">
+                              </div>
+                              <div class="form-group">
+                                <label for="">Label</label>
+                                <img id="image-info" src="{{laptop.image}}">
+                              </div>
+                              <div class="form-group">
+                                <label for="">RAM</label>
+                                <input type="text" class="form-control" id="" placeholder="" name="ram" value="{{laptop.ram}}">
+                              </div>
+                              <div class="form-group">
+                                <label for="">Monitor</label>
+                                <input type="text" class="form-control" id="" placeholder="" name="monitor" value="{{laptop.monitor}}">
+                              </div>
+                              <div class="form-group">
+                                <label for="">VGA</label>
+                                <input type="text" class="form-control" id="" placeholder="" name="vga" value="{{laptop.vga}}">
+                              </div>
+                              <div class="form-group">
+                                <label for="">Memory</label>
+                                <input type="text" class="form-control" id="" placeholder="" name="memory" value="{{laptop.memory}}">
+                              </div>
+                              <div class="form-group">
+                                <label for="">Detail</label>
+                              <input type="text" class="form-control" id="detail" placeholder="" name="detail" value="{{{laptop.detail}}}" style="height: 300px; white-space: normal;word-break: break-all;word-wrap: break-word;">
+                            </div>
+                              <!-- <div class="form-group">
+                                <label for="">Type</label>
+                                <select name="Category_id" class="form-control">
+                                  <option value="">Select options</option>
+                                  <option value="">Laptops</option>
+                                  <option value="">PC</option>
+                                </select>
+                              </div> -->
+                              <div class="form-group">
+                                <label for="">Price</label>
+                                <input type="text" class="form-control" id="" placeholder="" name="price" value="{{laptop.price}}">
+                              </div>
+                              <button style="float: left;" type="submit" class="btn btn-primary">Update</button>
+                            </form>
+                          <form action="/update/turn-back" method="GET">
+                            <button type="submit" style="float: right;" class="btn btn-success">Turn Back</button>
+                          </form>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          <!-- footer content -->
+          <footer>
+              <%- include('partials/footer.ejs') %>
+          </footer>
+          <!-- /footer content -->
+        </div>
+      </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -74,16 +74,6 @@ const productSchema = new schema(
       required: false,
       default: 0
     },
-    viewCounts: {
-      type: Number,
-      required: false,
-      default: 0
-    },
-    rating: {
-      byUser: String,
-      content: String,
-      star: Number
-    },
     index: {
       type: Number,
       required: false,
