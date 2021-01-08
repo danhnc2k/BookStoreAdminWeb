@@ -41,54 +41,87 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="card-box table-responsive">
-                                                    <p class="text-muted font-13 m-b-30">
-                                                        DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>
-                                                    </p>
-                                                    <div>
-                                                        <div class="tt-collapse open">
-                                                            <h3 class="tt-collapse-title">Loại sản phẩm</h3>
-                                                            <div class="tt-collapse-content">
-                                                                <ul class="tt-list-row" id="product-size">
-                                                                    
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tt-collapse open">
-                                                            <h3 class="tt-collapse-title">Lọc theo giá</h3>
-                                                            <div class="tt-collapse-content">
-                                                                <ul class="tt-list-row" id="product-price">
-                                                                    <li><input type="radio" name="price" value="50">$0 — $50</li>
-                                                                    <li><input type="radio" name="price" value="100">$50 — $100</li>
-                                                                    <li><input type="radio" name="price" value="150">$100 — $150</li>
-                                                                    <li><input type="radio" name="price" value="200">$150 —  $200</li>
-                                                                    <li><input type="radio" name="price" value="1000000">>$200</li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tt-collapse open">
-                                                            <h3 class="tt-collapse-title">Lọc theo kích thước</h3>
-                                                            <div class="tt-collapse-content">
-                                                                <ul class="tt-list-row" id="product-size">
-                                                                    <li><input type="radio" name="size" value="S"> S</li>
-                                                                    <li><input type="radio" name="size" value="M"> M</li>
-                                                                    <li><input type="radio" name="size" value="L"> L</li>
-                                                                    <li><input type="radio" name="size" value="XL"> XL</li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tt-collapse open">
-                                                            <h3 class="tt-collapse-title">Thương Hiệu</h3>
-                                                            <div class="tt-collapse-content">
-                                                                <ul class="tt-list-row" id="product-size">
-                                                                    
-                                                                </ul>
-                                                            </div>
+                                                    <div class="tt-collapse open">
+                                                        <h3 class="tt-collapse-title">Loại sản phẩm</h3>
+                                                        <div class="tt-collapse-content">
+                                                            <ul class="tt-list-row" id="product-maintype">
+                                                                <% categories.forEach(function(main){ %>
+                                                                    <li><a href="/products/<%= main._id %>"><%= main.name %></a></li>
+                                                                    <div class="tt-collapse-content">
+                                                                        <ul class="tt-list-row" id="product-subtype">
+                                                                            <% main.childName.forEach(function(sub){ %>
+                                                                                <li><a href="/products/<%= main._id %>/<%= sub._id %>"><%= sub.name %></a></li>
+                                                                            <% }); %>
+                                                                        </ul>
+                                                                    </div>
+                                                                <% }); %>
+                                                            </ul>
                                                         </div>
                                                     </div>
+                                                    <form method="GET">
+                                                        <div>
+                                                            <h3 class="tt-collapse-title">Giá</h3>
+                                                            <div class="input-select" >
+                                                                <select name="price">
+                                                                    <% if (priceValue) { %>
+                                                                        <option value ="-1">All</option>
+                                                                    <% } else { %>
+                                                                        <option value ="-1" selected>All</option>
+                                                                    <% } %>
+                                                                    <% var index; for (index = 0; index < prices.length; index++){ %>
+                                                                        <% if (priceValue == index) { %>
+                                                                            <option value="<%= index %>" selected>$<%= prices[index][0] %> — $<%= prices[index][1] %></option>
+                                                                        <% } else { %>
+                                                                            <option value="<%= index %>">$<%= prices[index][0] %> — $<%= prices[index][1] %></option>
+                                                                        <% } %>
+                                                                    <% } %>
+                                                                    <% if (priceValue == index) { %>
+                                                                        <option value="<%= index %>" selected> $<%= prices[index - 1][1] %></option>
+                                                                    <% } else { %>
+                                                                        <option value="<%= index %>"> $<%= prices[index - 1][1] %></option>
+                                                                    <% } %>
+                                                                </select>
+                                                            </div>
+                                                            <h3 class="tt-collapse-title">Kích thước</h3>
+                                                            <div class="input-select" >
+                                                                <select name="size">
+                                                                    <% if (sizeValue) { %>
+                                                                        <option value ="-1">All</option>
+                                                                    <% } else { %>
+                                                                        <option value ="-1" selected>All</option>
+                                                                    <% } %>
+                                                                    <% var index; for (index = 0; index < sizes.length; index++){ %>
+                                                                        <% if (sizeValue == index) { %>
+                                                                            <option value="<%= index %>" selected><%= sizes[index] %></option>
+                                                                        <% } else { %>
+                                                                            <option value="<%= index %>"><%= sizes[index] %></option>
+                                                                        <% } %>
+                                                                    <% } %>
+                                                                </select>
+                                                            </div>
+                                                            <h3 class="tt-collapse-title">Thương Hiệu</h3>
+                                                            <div class="input-select" >
+                                                                <select name="label">
+                                                                    <% if (labelValue) { %>
+                                                                        <option value ="-1">All</option>
+                                                                    <% } else { %>
+                                                                        <option value ="-1" selected>All</option>
+                                                                    <% } %>
+                                                                    <% var index; for (index = 0; index < labels.length; index++){ %>
+                                                                        <% if (labelValue == index) { %>
+                                                                            <option value="<%= index %>" selected><%= labels[index].name %></option>
+                                                                        <% } else { %>
+                                                                            <option value="<%= index %>"><%= labels[index].name %></option>
+                                                                        <% } %>
+                                                                    <% } %>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-border mx-auto mb-5">Lọc</button>
+                                                    </form>
+                                                    
                                                     <div>
-                                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-plus">
-                                                        </i> Thêm
-                                                   </button>
+                                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</button>
                                                    <button type="button" class="btn btn-success btn-sm"> <i class="fa fa-trash">
                                                    </i></button>
                                                     </div>
@@ -126,19 +159,19 @@
                                                                             Name
                                                                         </th>
                                                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 210px;">
-                                                                            Position
+                                                                            Stock
                                                                         </th>
                                                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 93px;">
-                                                                            Office
+                                                                            Price
                                                                         </th>
                                                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 42px;">
-                                                                            Age
+                                                                            dateAdded
                                                                         </th>
                                                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 85px;">
-                                                                            Start date
+                                                                            Sale
                                                                         </th>
                                                                         <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 71px;">
-                                                                            Salary
+                                                                            Doing
                                                                         </th>
                                                                     </tr>
                                                                     </thead>
@@ -152,7 +185,9 @@
                                                                         <td><%= product.price %></td>
                                                                         <td><%= product.dateAdded%></td>
                                                                         <td><%= product.sale %></td>
-                                                                        <td><%= product.buyCounts %></td>
+                                                                        <td>
+                                                                            <a href="product/<%= product._id %>"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</button></a>
+                                                                        </td>
                                                                     </tr>
                                                                     <% }); %>
                                                                     </tbody>
@@ -166,17 +201,17 @@
                                                             <div class="col-sm-7">
                                                                 <nav aria-label="Page navigation example">
                                                                     <ul class="pagination justify-content-end">
-                                                                        <li class="page-item"><a class="page-link" href="/products/?page=1">First Page</a></li>
+                                                                        <li class="page-item"><a class="page-link" href="?price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&page=1">First Page</a></li>
                                                                         <% if(hasPrevPage){ %>
-                                                                        <li class="page-item"><a class="page-link" href="/products/?page=<%= prevPage %>">Previous</a></li>
-                                                                        <li class="page-item"><a class="page-link" href="/products/?page=<%= currentPage - 1 %>"><%= currentPage - 1 %></a></li>
+                                                                        <li class="page-item"><a class="page-link" href="?price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&page=<%= prevPage %>">Previous</a></li>
+                                                                        <li class="page-item"><a class="page-link" href="?price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&page=<%= currentPage - 1 %>"><%= currentPage - 1 %></a></li>
                                                                         <% } %>
-                                                                        <li class="page-item"><a class="page-link" href="/products/?page=<%= currentPage %>"><%= currentPage %></a></li>
+                                                                        <li class="page-item"><a class="page-link" href="?price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&page=<%= currentPage %>"><%= currentPage %></a></li>
                                                                         <% if(hasNextPage){ %>
-                                                                        <li class="page-item"><a class="page-link" href="/products/?page=<%= currentPage + 1 %>"><%= currentPage + 1 %></a></li>
-                                                                        <li class="page-item"><a class="page-link" href="/products/?page=<%= nextPage %>">Next</a></li>
+                                                                        <li class="page-item"><a class="page-link" href="?price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&page=<%= currentPage + 1 %>"><%= currentPage + 1 %></a></li>
+                                                                        <li class="page-item"><a class="page-link" href="?price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&page=<%= nextPage %>">Next</a></li>
                                                                         <% } %>
-                                                                        <li class="page-item"><a class="page-link" href="/products/?page=<%= totalPages %>">Last Page</a></li>
+                                                                        <li class="page-item"><a class="page-link" href="?price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&page=<%= totalPages %>">Last Page</a></li>
                                                                     </ul>
                                                                 </nav>
                                                             </div>

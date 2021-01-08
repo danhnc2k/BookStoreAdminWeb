@@ -34,10 +34,6 @@ const productSchema = new schema(
       type: [String],
       required: true
     },
-    pattern: {
-      type: [String],
-      required: false
-    },
     tags: {
       type: [String],
       required: false
@@ -50,11 +46,6 @@ const productSchema = new schema(
       type: Date,
       required: false,
       default: Date.now
-    },
-    sale: {
-      type: String,
-      required: false,
-      default: 0
     },
     ofSellers: {
         type: String,
@@ -73,16 +64,6 @@ const productSchema = new schema(
       type: Number,
       required: false,
       default: 0
-    },
-    viewCounts: {
-      type: Number,
-      required: false,
-      default: 0
-    },
-    rating: {
-      byUser: String,
-      content: String,
-      star: Number
     },
     index: {
       type: Number,
