@@ -1,4 +1,3 @@
-const products = require('../models/product')
 const productServices = require('../models/service/productService');
 const categoryServices = require('../models/service/categoryService');
 const labelServices = require('../models/service/labelService');
@@ -77,6 +76,7 @@ exports.getIndex = async function(req, res, next){
 
 exports.getProductDetail = async function(req, res, next){
     const categoriesList = await categoryServices.listCategories();
+    const labelsList = await labelServices.listLabels();
     const product = await productServices.getProduct(req.params.id);
     let sizeStr="";
     product.size.forEach(element => {
@@ -97,6 +97,7 @@ exports.getProductDetail = async function(req, res, next){
 
     res.render('detail',{
         categories: categoriesList,
+        labels: labelsList,
         id: product._id,
         name: product.name,
         description: product.description,
@@ -116,7 +117,7 @@ exports.getProductDetail = async function(req, res, next){
 
 exports.postUpdate = async function(req, res, next){
     await productServices.update(req.body.id,req.body.name,req.body.description,req.body.size,
-        req.body.subCategory,req.body.stock,req.body.price,req.body.sale,req.body.color,
+        req.body.subCategory,req.body.stock,req.body.price,req.body.color,
         req.body.image,req.body.material,req.body.buyCount,req.body.label);
     res.redirect('/');
 }
