@@ -47,11 +47,6 @@ const productSchema = new schema(
       required: false,
       default: Date.now
     },
-    ofSellers: {
-        type: String,
-        required: true,
-        ref: "User"
-    },
     labels: {
       type: String,
       required: false
