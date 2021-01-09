@@ -92,9 +92,9 @@
                                 <select name="label">
                                   <% labels.forEach(function(element){ %>
                                     <% if (element._id == label){ %>
-                                        <option value="<%= label._id %>" selected><%= element.name %></option>
+                                        <option value="<%= element_id %>" selected><%= element.name %></option>
                                     <% }else{ %>
-                                        <option value="<%= label._id %>"><%= element.name %></option>
+                                        <option value="<%= element._id %>"><%= element.name %></option>
                                     <% } %>
                                   <% }); %>
                                 </select>
