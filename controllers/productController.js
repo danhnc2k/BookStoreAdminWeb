@@ -2,7 +2,6 @@ const productServices = require('../models/service/productService');
 const categoryServices = require('../models/service/categoryService');
 const labelServices = require('../models/service/labelService');
 
-let ITEM_PER_PAGE = 5;
 
 exports.getProducts = async function(req, res, next){
     //Categories list
@@ -18,19 +17,28 @@ exports.getProducts = async function(req, res, next){
     let sizeList = ["S", "M", "L", "XL"];
     //Label list
     const labelList = await labelServices.listLabels();
+    //Item per page list
+    let itemPerPageList = [5, 10, 15, 20];
 
     const price_value = req.query.price;
     const size_value = req.query.size;
     const label_value = req.query.label;
     const page = +req.query.page || 1;
+    const search_value = req.query.search;
     const filter = {};
+    let length_value;
+    if (req.query.length){
+        length_value = req.query.length;
+    }else{
+        length_value = 1;
+    }
     if (req.params.mainCategory)
     {
-        filter['productType.main']= new RegExp(req.params.mainCategory, "i");
+        filter['category.main']= new RegExp(req.params.mainCategory, "i");
     }
     if (req.params.subCategory)
     {
-        filter['productType.sub']= new RegExp(req.params.subCategory, "i");
+        filter['category.sub']= new RegExp(req.params.subCategory, "i");
     }
     if (price_value && price_value != -1)
     {
@@ -44,12 +52,19 @@ exports.getProducts = async function(req, res, next){
     {
         filter['labels'] = new RegExp(labelList[label_value]._id, "i");
     }
-    const paginate = await productServices.listProducts(filter, page, ITEM_PER_PAGE);
+    if (search_value && search_value != "")
+    {
+        filter['name'] = new RegExp(`${search_value}`, "i");
+    }
+    const paginate = await productServices.listProducts(filter, page, itemPerPageList[length_value]);
     res.render("products", {
         categories: categoriesList,
         prices: priceList,
         sizes: sizeList,
         labels: labelList,
+        lengths: itemPerPageList,
+        lengthValue: length_value,
+        searchValue: search_value,
         priceValue: price_value,
         sizeValue: size_value,
         labelValue: label_value,
@@ -124,49 +139,25 @@ exports.postUpdate = async function(req, res, next){
 
 exports.getDelivered = async function(req, res, next){
     const page = +req.query.page || 1;
-    const paginate = await productServices.listProducts({}, page, ITEM_PER_PAGE);
+    
     res.render("delivered", {
-        title: "List Products",
-        allProducts: paginate.docs,
-        totalProducts: paginate.totalDocs,
-        hasNextPage: paginate.hasNextPage,
-        hasPrevPage: paginate.hasPrevPage,
-        nextPage: paginate.nextPage,
-        prevPage: paginate.prevPage,
-        currentPage: paginate.page,
-        totalPages: paginate.totalPages
+        
     });
 }
 
 exports.getDelivering = async function(req, res, next){
     const page = +req.query.page || 1;
-    const paginate = await productServices.listProducts({}, page, ITEM_PER_PAGE);
+    
     res.render("delivering", {
-        title: "List Products",
-        allProducts: paginate.docs,
-        totalProducts: paginate.totalDocs,
-        hasNextPage: paginate.hasNextPage,
-        hasPrevPage: paginate.hasPrevPage,
-        nextPage: paginate.nextPage,
-        prevPage: paginate.prevPage,
-        currentPage: paginate.page,
-        totalPages: paginate.totalPages
+        
     });
 }
 
 exports.getDeliversoon = async function(req, res, next){
     const page = +req.query.page || 1;
-    const paginate = await productServices.listProducts({}, page, ITEM_PER_PAGE);
+    
     res.render("deliversoon", {
-        title: "List Products",
-        allProducts: paginate.docs,
-        totalProducts: paginate.totalDocs,
-        hasNextPage: paginate.hasNextPage,
-        hasPrevPage: paginate.hasPrevPage,
-        nextPage: paginate.nextPage,
-        prevPage: paginate.prevPage,
-        currentPage: paginate.page,
-        totalPages: paginate.totalPages
+        
     });
 }
 
