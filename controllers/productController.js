@@ -79,10 +79,6 @@ exports.getProducts = async function(req, res, next){
     });
 }
 
-exports.getCategories = async function(req, res, next){
-    
-}
-
 exports.getIndex = async function(req, res, next){
     res.render('index',{
 
