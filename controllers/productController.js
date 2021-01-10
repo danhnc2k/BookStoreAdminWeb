@@ -84,7 +84,11 @@ exports.getIndex = async function(req, res, next){
 
     });
 }
+exports.getAddPro = async function (req, res, next) {
+    res.render('addPro', {
 
+    });
+}
 exports.getProductDetail = async function(req, res, next){
     const categoriesList = await categoryServices.listCategories();
     const labelsList = await labelServices.listLabels();

@@ -7,5 +7,6 @@ router.get('/', authorController.getLogin);
 router.get('/login',authorController.getLogin);
 router.get('/users',authorController.getUsers);
 router.get('/profile',authorController.getProfile);
+router.get('/editProfile', authorController.getEditProfile);
 
 module.exports = router;
