@@ -21,32 +21,51 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="card-box table-responsive">
-                                                <div class="tt-collapse open">
-                                                    <h3 class="tt-collapse-title">Loại sản phẩm</h3>
-                                                    <div class="tt-collapse-content">
-                                                        <ul class="tt-list-row" id="product-maintype">
-                                                            <% categories.forEach(function(main){ %>
-                                                                <li><a href="/products/<%= main._id %>"><%= main.name %></a></li>
-                                                                <div class="tt-collapse-content">
-                                                                    <ul class="tt-list-row" id="product-subtype">
-                                                                        <% main.childName.forEach(function(sub){ %>
-                                                                            <li><a href="/products/<%= main._id %>/<%= sub._id %>"><%= sub.name %></a></li>
-                                                                        <% }); %>
-                                                                    </ul>
-                                                                </div>
-                                                            <% }); %>
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                                                <div class="top_nav" style="margin:0;">
+                                                        <div class="">
+                                                            <div class="page-title">
+                                                                <ul class="navbar-left">
+                                                                    <li style="position:absolute;" class="nav-item dropdown open" style="padding-left: 15px;">
+                                                                      <a style="font-size: 25px;" href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                                                                        Loại sản phẩm
+                                                                      </a>
+                                                                      <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                                                                      <ul class="dropdown-item" id="product-maintype">
+                                                                          <% categories.forEach(function(main){ %>
+                                                                              <li><a class="dropdown-item" href="/products/<%= main._id %>"><%= main.name %></a></li>
+                                                                              <div class="tt-collapse-content">
+                                                                                  <ul class="tt-list-row" id="product-subtype">
+                                                                                      <% main.childName.forEach(function(sub){ %>
+                                                                                          <li><a href="/products/<%= main._id %>/<%= sub._id %>"><%= sub.name %></a></li>
+                                                                                      <% }); %>
+                                                                                  </ul>
+                                                                              </div>
+                                                                          <% }); %>
+                                                                      </ul>
+                                                                      </div>
+                                                                    </li>
+                                                                    <div style="position:absolute;" class="title_right">
+                                                                        <div style="margin:0;padding:0 0 0 0px" class="col-md-5 col-sm-5   form-group row pull-right top_search">
+                                                                            <div class="input-group">
+                                                                                <input type="text" class="form-control" name="search" value="<%= searchValue %>" placeholder="Search for...">
+                                                                                 <a href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= currentPage %>">
+                                                                                <span class="input-group-btn">
+                                                                                <button class="btn btn-secondary" type="button">Search</button>
+                                                                                </span>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                  </ul>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                </div>       
                                                 <form method="GET">
-                                                    <div>
-                                                        <input type="text" class="form-group" name="search" value="<%= searchValue %>" placeholder="Search for...">
-                                                        <a href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= currentPage %>">
-                                                            <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i>Search</button>
-                                                        </a>
-                                                        <h3 class="tt-collapse-title">Giá</h3>
-                                                        <div class="input-select" >
-                                                            <select name="price">
+                                                    <div class="form-group row">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="">Giá</label>
+                                                          <div class="col-md-9 col-sm-9 col-xs-9">
+                                                            <select name="price" class="form-control">
                                                                 <% if (priceValue) { %>
                                                                     <option value ="-1">All</option>
                                                                 <% } else { %>
@@ -65,68 +84,68 @@
                                                                     <option value="<%= index %>"> $<%= prices[index - 1][1] %></option>
                                                                 <% } %>
                                                             </select>
+                                                          </div>
                                                         </div>
-                                                        <h3 class="tt-collapse-title">Kích thước</h3>
-                                                        <div class="input-select" >
-                                                            <select name="size">
-                                                                <% if (sizeValue) { %>
-                                                                    <option value ="-1">All</option>
-                                                                <% } else { %>
-                                                                    <option value ="-1" selected>All</option>
-                                                                <% } %>
-                                                                <% var index; for (index = 0; index < sizes.length; index++){ %>
-                                                                    <% if (sizeValue == index) { %>
-                                                                        <option value="<%= index %>" selected><%= sizes[index] %></option>
+                                                        <div class="form-group row">
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-3" for="">Kích thước</label>
+                                                              <div class="col-md-9 col-sm-9 col-xs-9">
+                                                                <select name="size" class="form-control">
+                                                                    <% if (sizeValue) { %>
+                                                                        <option value ="-1">All</option>
                                                                     <% } else { %>
-                                                                        <option value="<%= index %>"><%= sizes[index] %></option>
+                                                                        <option value ="-1" selected>All</option>
                                                                     <% } %>
-                                                                <% } %>
-                                                            </select>
+                                                                    <% var index; for (index = 0; index < sizes.length; index++){ %>
+                                                                        <% if (sizeValue == index) { %>
+                                                                            <option value="<%= index %>" selected><%= sizes[index] %></option>
+                                                                        <% } else { %>
+                                                                            <option value="<%= index %>"><%= sizes[index] %></option>
+                                                                        <% } %>
+                                                                    <% } %>
+                                                                </select>
+                                                              </div>
                                                         </div>
-                                                        <h3 class="tt-collapse-title">Thương Hiệu</h3>
-                                                        <div class="input-select" >
-                                                            <select name="label">
-                                                                <% if (labelValue) { %>
-                                                                    <option value ="-1">All</option>
-                                                                <% } else { %>
-                                                                    <option value ="-1" selected>All</option>
-                                                                <% } %>
-                                                                <% var index; for (index = 0; index < labels.length; index++){ %>
-                                                                    <% if (labelValue == index) { %>
-                                                                        <option value="<%= index %>" selected><%= labels[index].name %></option>
+                                                        <div class="form-group row">
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-3" for="">Thương hiệu</label>
+                                                              <div class="col-md-9 col-sm-9 col-xs-9">
+                                                                <select name="label" class="form-control">
+                                                                    <% if (labelValue) { %>
+                                                                        <option value ="-1">All</option>
                                                                     <% } else { %>
-                                                                        <option value="<%= index %>"><%= labels[index].name %></option>
+                                                                        <option value ="-1" selected>All</option>
                                                                     <% } %>
-                                                                <% } %>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div id="datatable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap no-footer">
-                                                        <div class="row">
-                                                            <div class="col-sm-6">
-                                                                <div class="dataTables_length" id="datatable_length">
-                                                                    <label>
-                                                                        Show
-                                                                        <select name="length" aria-controls="datatable" class="form-control input-sm">
-                                                                            <% var index; for (index = 0; index < lengths.length; index++){ %>
-                                                                                <% if (lengthValue == index) { %>
-                                                                                    <option value="<%= index %>" selected><%= lengths[index] %></option>
-                                                                                <% } else { %>
-                                                                                    <option value="<%= index %>"><%= lengths[index] %></option>
-                                                                                <% } %>
-                                                                            <% } %>
-                                                                        </select> entries
-                                                                    </label>
-                                                                </div>
+                                                                    <% var index; for (index = 0; index < labels.length; index++){ %>
+                                                                        <% if (labelValue == index) { %>
+                                                                            <option value="<%= index %>" selected><%= labels[index].name %></option>
+                                                                        <% } else { %>
+                                                                            <option value="<%= index %>"><%= labels[index].name %></option>
+                                                                        <% } %>
+                                                                    <% } %>
+                                                                </select>
+                                                              </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
+                                                            <div class="form-group row">
+                                                                <label class="control-label col-md-3 col-sm-3 col-xs-3" for="">Show</label>
+                                                                  <div class="col-md-9 col-sm-9 col-xs-9">
+                                                                    <select name="length" aria-controls="datatable" class="form-control">
+                                                                        <% var index; for (index = 0; index < lengths.length; index++){ %>
+                                                                            <% if (lengthValue == index) { %>
+                                                                                <option value="<%= index %>" selected><%= lengths[index] %></option>
+                                                                            <% } else { %>
+                                                                                <option value="<%= index %>"><%= lengths[index] %></option>
+                                                                            <% } %>
+                                                                        <% } %>
+                                                                    </select>
+                                                                  </div>
+                                                                </div>
+                                                    
+                                                    
                                                     <button type="submit" class="btn btn-primary btn-sm">Lọc</button>
                                                 </form>
                                                 
                                                 <div>
                                                     <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</button>
-                                               <button type="button" class="btn btn-success btn-sm"> <i class="fa fa-trash">
+                                               <button Onclick="return ConfirmDelete();" type="submit" class="btn btn-success btn-sm"> <i class="fa fa-trash">
                                                </i></button>
                                                 </div>
                                                 
@@ -135,7 +154,8 @@
                                                             <table id="datatable" class="table table-striped table-bordered dataTable no-footer" style="width:100%" role="grid" aria-describedby="datatable_info">
                                                                 <thead>
                                                                 <tr role="row">
-                                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 128px;">
+                                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable-checkbox" rowspan="1" colspan="1" aria-sort="ascending" aria-label=": activate to sort column descending" style="width: 13px;"><input type="checkbox" id="check-all"></th>
+                                                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 128px;">
                                                                         Name
                                                                     </th>
                                                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 210px;">
@@ -160,6 +180,7 @@
                                                                 <tbody>
                                                                 <% allProducts.forEach(function(product){%>
                                                                 <tr>
+                                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable-checkbox" rowspan="1" colspan="1" aria-sort="ascending" aria-label=": activate to sort column descending" style="width: 13px;"><input type="checkbox" id="check-all"></th>
                                                                     <td><%= product.name %></td>
                                                                     <td><%= product.stock %></td>
                                                                     <td><%= product.price %></td>
@@ -210,6 +231,6 @@
     <footer>
         <%- include('partials/footer.ejs') %>
     </footer>
+    <%- include('partials/script.ejs') %>
     </body>
-  
 </html>
