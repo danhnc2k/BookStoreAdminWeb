@@ -25,10 +25,23 @@
                                                         <div class="">
                                                             <div class="page-title">
                                                                 <ul class="navbar-left">
-                                                                    <li style="position:absolute;" class="nav-item dropdown open" style="padding-left: 15px;">
+                                                                    <div class="title_left">
+                                                                        <div style="margin:0;padding:0 0 0 0px" class="col-md-5 col-sm-5   form-group row pull-right top_search">
+                                                                            <div class="input-group">
+                                                                                <input type="text" class="form-control" name="search" value="<%= searchValue %>" placeholder="Search for...">
+                                                                                 <a href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= currentPage %>">
+                                                                                <span class="input-group-btn">
+                                                                                <button class="btn btn-secondary" type="button">Search</button>
+                                                                                </span>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <li class="nav-item dropdown open" style="padding-left: 15px;">
                                                                       <a style="font-size: 25px;" href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
                                                                         Loại sản phẩm
                                                                       </a>
+                                                                      
                                                                       <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                                                                       <ul class="dropdown-item" id="product-maintype">
                                                                           <% categories.forEach(function(main){ %>
@@ -43,19 +56,9 @@
                                                                           <% }); %>
                                                                       </ul>
                                                                       </div>
+                                                                      
                                                                     </li>
-                                                                    <div style="position:absolute;" class="title_right">
-                                                                        <div style="margin:0;padding:0 0 0 0px" class="col-md-5 col-sm-5   form-group row pull-right top_search">
-                                                                            <div class="input-group">
-                                                                                <input type="text" class="form-control" name="search" value="<%= searchValue %>" placeholder="Search for...">
-                                                                                 <a href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= currentPage %>">
-                                                                                <span class="input-group-btn">
-                                                                                <button class="btn btn-secondary" type="button">Search</button>
-                                                                                </span>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                    
                                                                   </ul>
                                                                 
                                                             </div>
