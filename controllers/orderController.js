@@ -8,8 +8,12 @@ exports.getOrders = async function(req, res, next){
 
     let status_list =['Chưa giao', 'Đang giao', 'Đã giao'];
     const page = +req.query.page || 1;
-    const status_value = +req.query.status;
     const filter = {};
+    let status_value;
+    if (req.query.status)
+    {
+        status_value = +req.query.status;
+    }
     if (status_value != undefined && status_value != -1)
     {
         filter['status'] = {$eq: status_value};
