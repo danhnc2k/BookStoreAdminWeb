@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head.ejs') %>
+</head>
+    <body>
+        <body class="nav-md">
+        <div class="container body">
+            <div class="main_container">
+                <%- include('partials/navigation.ejs') %>
+                <div class="right_col" role="main" style="min-height: 454px;">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Default Example <small>Users</small></h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="card-box table-responsive">
+                                                <form method="GET">
+                                                    <div>
+                                                        
+                                                        <h3 class="tt-collapse-title">Trạng thái đơn hàng</h3>
+                                                        <div class="input-select" >
+                                                            <select name="status">
+                                                                <% if (statusValue) { %>
+                                                                    <option value ="-1">All</option>
+                                                                <% } else { %>
+                                                                    <option value ="-1" selected>All</option>
+                                                                <% } %>
+                                                                <% var index; for (index = 0; index < statusList.length; index++){ %>
+                                                                    <% if (statusValue == index) { %>
+                                                                        <option value="<%= index %>" selected><%= statusList[index] %></option>
+                                                                    <% } else { %>
+                                                                        <option value="<%= index %>"><%= statusList[index] %></option>
+                                                                    <% } %>
+                                                                <% } %>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary btn-sm">Lọc</button>
+                                                </form>
+                                                <div class="row">
+                                                    <div>
+                                                        <table id="datatable">
+                                                            <thead>
+                                                            <tr role="row">
+                                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" style="width: 120px;">
+                                                                    Tên khách hàng
+                                                                </th>
+                                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"  style="width: 120px;">
+                                                                    Số điện thoại
+                                                                </th>
+                                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"  style="width: 120px;">
+                                                                    Địa chỉ
+                                                                </th>
+                                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"  style="width: 120px;">
+                                                                    Tên sản phẩm
+                                                                </th>
+                                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"  style="width: 120px;">
+                                                                    Giá tiền
+                                                                </th>
+                                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" style="width: 120px;">
+                                                                    Số lượng
+                                                                </th>
+                                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" style="width: 120px;">
+                                                                    Tổng tiền
+                                                                </th>
+                                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" style="width: 120px;">
+                                                                    Trạng thái
+                                                                </th>
+                                                            </tr>
+                                                            </thead>
+
+                                                            <tbody>
+                                                            <% allOrders.forEach(function(order){%>
+                                                                <tr>
+                                                                    <td rowspan="2"  colspan="1"><%= order.firstName + ' ' + order.lastName %></td>
+                                                                    <td rowspan="2"  colspan="1"><%= order.phoneNumber %></td>
+                                                                    <td rowspan="2"  colspan="1"><%= order.address %></td>
+                                                                <% order.items.forEach(function(item){ %>
+                                                                    <td><%= item.name %></td>
+                                                                    <td><%= item.price %></td>
+                                                                    <td><%= item.amount %></td>
+                                                                <% }); %>
+                                                                    <td rowspan="2"  colspan="1"><%= order.total %></td>
+                                                                    <td rowspan="2"  colspan="1"><%= order.status %></td>
+                                                                </tr>
+                                                            <% }); %>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-5">
+                                                        <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Total result: <%= totalOrders %></div>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <nav aria-label="Page navigation example">
+                                                            <ul class="pagination justify-content-end">
+                                                                <li class="page-item"><a class="page-link" href="?status=<%= statusValue %>&page=1">First Page</a></li>
+                                                                <% if(hasPrevPage){ %>
+                                                                <li class="page-item"><a class="page-link" href="?status=<%= statusValue %>&page=<%= prevPage %>">Previous</a></li>
+                                                                <li class="page-item"><a class="page-link" href="?status=<%= statusValue %>&page=<%= currentPage - 1 %>"><%= currentPage - 1 %></a></li>
+                                                                <% } %>
+                                                                <li class="page-item active"><a class="page-link" href="?status=<%= statusValue %>&page=<%= currentPage %>"><%= currentPage %></a></li>
+                                                                <% if(hasNextPage){ %>
+                                                                <li class="page-item"><a class="page-link" href="?status=<%= statusValue %>&page=<%= currentPage + 1 %>"><%= currentPage + 1 %></a></li>
+                                                                <li class="page-item"><a class="page-link" href="?status=<%= statusValue %>&page=<%= nextPage %>">Next</a></li>
+                                                                <% } %>
+                                                                <li class="page-item"><a class="page-link" href="?status=<%= statusValue %>&page=<%= totalPages %>">Last Page</a></li>
+                                                            </ul>
+                                                        </nav>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </body>
+    <footer>
+        <%- include('partials/footer.ejs') %>
+    </footer>
+    </body>
+  
+</html>

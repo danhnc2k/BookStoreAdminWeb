@@ -12,7 +12,7 @@ const productSchema = new schema(
     description: {
       type: String,
       required: false,
-      default: "Một sản phẩm từ Bros"
+      default: "Một sản phẩm từ HDH"
     },
     stock: {
       type: Number,
