@@ -110,7 +110,7 @@ exports.getProductDetail = async function(req, res, next){
         materialStr += element+';';
     });
 
-    res.render('detail',{
+    res.render('productDetail',{
         categories: categoriesList,
         labels: labelsList,
         id: product._id,
