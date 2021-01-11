@@ -5,6 +5,10 @@ const schema = mongoose.Schema;
 
 const userSchema = new schema(
 {
+    avatar: {
+        type: String,
+        required: true
+    },
     username: {
         type: String,
         required: true
@@ -29,7 +33,7 @@ const userSchema = new schema(
         type: String,
         required: true
     },
-    isLock: {
+    isLocked: {
         type: Boolean,
         required: true,
         default: false

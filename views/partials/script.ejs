@@ -1,23 +1,60 @@
 
-
 <script>
-    function ConfirmDelete()
+    window.onload = function(){
+        document.getElementById("delete-button").disabled = true;
+    }
+    function confirmUnlock()
     {
-      var x = confirm("Are you sure you want to delete?");
+      var x = confirm("Bạn chắc chắn muốn mở khóa tài khoản này chứ?");
       if (x)
           return true;
       else
         return false;
     }
-</script>
-<script>
-    function ConfirmBlock()
+    function confirmLock()
     {
-      var x = confirm("Are you sure you want to block this account?");
+      var x = confirm("Bạn chắc chắn muốn khóa tài khoản này chứ?");
       if (x)
           return true;
       else
         return false;
+    }
+
+    function confirmDelete()
+    {
+        var x = confirm("Bạn chắc chắn muốn xóa sản phẩm đã chọn chứ?");
+        if(x){
+            checkboxes = document.getElementsByName('chosen-item');
+            idList = "";
+            for(var i=0, n=checkboxes.length; i < n ; i++) {
+                if (checkboxes[i].checked == true){
+                idList += checkboxes[i].value+';';
+                }
+            }
+            document.getElementById('id-list').value = idList;
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function toggle(source) {
+    checkboxes = document.getElementsByName('chosen-item');
+    for(var i=0, n=checkboxes.length; i < n ; i++) {
+        checkboxes[i].checked = source.checked;
+    }
+    enableDeleteButton(source);
+}
+
+    function enableDeleteButton(source) {
+        checkboxes = document.getElementsByName('chosen-item');
+        for(var i=0, n=checkboxes.length; i < n ; i++) {
+            if (checkboxes[i].checked == true){
+                document.getElementById("delete-button").disabled = false;
+                return;
+            }
+        }
+        document.getElementById("delete-button").disabled = true;
     }
 </script>
 <!-- jQuery -->

@@ -19,7 +19,7 @@ exports.getProducts = async function(req, res, next){
     const labelList = await labelServices.listLabels();
     //Item per page list
     let itemPerPageList = [5, 10, 15, 20];
-
+    
     const price_value = req.query.price;
     const size_value = req.query.size;
     const label_value = req.query.label;
@@ -110,7 +110,7 @@ exports.getProductDetail = async function(req, res, next){
         materialStr += element+';';
     });
 
-    res.render('detail',{
+    res.render('productDetail',{
         categories: categoriesList,
         labels: labelsList,
         id: product._id,
@@ -130,11 +130,16 @@ exports.getProductDetail = async function(req, res, next){
     });
 }
 
-exports.postUpdate = async function(req, res, next){
+exports.updateProduct = async function(req, res, next){
     await productServices.update(req.body.id,req.body.name,req.body.description,req.body.size,
         req.body.subCategory,req.body.stock,req.body.price,req.body.color,
         req.body.image,req.body.material,req.body.buyCount,req.body.label);
-    res.redirect('/');
+    res.redirect('/product/'+req.body.id);
+}
+
+exports.deleteProduct = async function(req, res, next){
+    await productServices.delete(req.body.deleteIdList);
+    res.redirect('/products');
 }
 
 exports.getDelivered = async function(req, res, next){

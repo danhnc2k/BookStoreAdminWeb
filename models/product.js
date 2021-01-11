@@ -65,6 +65,11 @@ const productSchema = new schema(
       required: false,
       default: 0
     },
+    isDeleted: {
+      type: Boolean,
+      required: true,
+      default: false
+    },
     comment: {
       total: {
         type: Number,
