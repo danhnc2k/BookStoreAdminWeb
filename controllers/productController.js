@@ -19,7 +19,7 @@ exports.getProducts = async function(req, res, next){
     const labelList = await labelServices.listLabels();
     //Item per page list
     let itemPerPageList = [5, 10, 15, 20];
-
+    
     const price_value = req.query.price;
     const size_value = req.query.size;
     const label_value = req.query.label;
