@@ -26,18 +26,7 @@
                                                             <div class="page-title">
                                                                 <ul class="navbar-left">
                                                                     <li class="nav-item dropdown open" style="padding-left: 15px;">
-                                                                        <div class="title_left">
-                                                                            <div style="margin:0;padding:0 0 0 0px" class="col-md-5 col-sm-5   form-group row pull-right top_search">
-                                                                                <div class="input-group">
-                                                                                    <input type="text" class="form-control" name="search" value="<%= searchValue %>" placeholder="Search for...">
-                                                                                     <a href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= currentPage %>">
-                                                                                    <span class="input-group-btn">
-                                                                                    <button class="btn btn-secondary" type="button">Search</button>
-                                                                                    </span>
-                                                                                    </a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                                        
                                                                       <a style="font-size: 25px;" href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
                                                                         Loại sản phẩm
                                                                       </a>
@@ -64,6 +53,18 @@
                                                         </div>
                                                 </div>       
                                                 <form method="GET">
+                                                    <div class="form-group row">
+                                                        <div style="margin:0;padding:0 0 0 0px" class="col-md-5 col-sm-5   form-group row pull-right top_search">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" name="search" value="<%= searchValue %>" placeholder="Search for...">
+                                                                 <a href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= currentPage %>">
+                                                                <span class="input-group-btn">
+                                                                <button class="btn btn-secondary" type="submit">Search</button>
+                                                                </span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="form-group row">
                                                         <label class="control-label col-md-3 col-sm-3 col-xs-3" for="">Giá</label>
                                                           <div class="col-md-9 col-sm-9 col-xs-9">
@@ -128,7 +129,7 @@
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label class="control-label col-md-3 col-sm-3 col-xs-3" for="">Show</label>
-                                                                  <div class="col-md-9 col-sm-9 col-xs-9">
+                                                                <div class="col-md-9 col-sm-9 col-xs-9">
                                                                     <select name="length" aria-controls="datatable" class="form-control">
                                                                         <% var index; for (index = 0; index < lengths.length; index++){ %>
                                                                             <% if (lengthValue == index) { %>
@@ -138,17 +139,23 @@
                                                                             <% } %>
                                                                         <% } %>
                                                                     </select>
-                                                                  </div>
                                                                 </div>
+                                                            </div>
                                                     
                                                     
                                                     <button type="submit" class="btn btn-primary btn-sm">Lọc</button>
                                                 </form>
-                                                
                                                 <div>
                                                     <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</button>
-                                               <button Onclick="return ConfirmDelete();" type="submit" class="btn btn-success btn-sm"> <i class="fa fa-trash">
-                                               </i></button>
+                                                    <form method="POST" action="/task/product/delete">
+                                                        <input name="deleteIdList" id="id-list" hidden>
+                                                        <button onclick="confirmDelete()" type="submit" class="btn btn-success btn-sm" id="delete-button">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                    <a href="task/delete">
+                                                        
+                                                    </a>
                                                 </div>
                                                 
                                                     <div class="row">
@@ -156,7 +163,7 @@
                                                             <table id="datatable" class="table table-striped table-bordered dataTable no-footer" style="width:100%" role="grid" aria-describedby="datatable_info">
                                                                 <thead>
                                                                 <tr role="row">
-                                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable-checkbox" rowspan="1" colspan="1" aria-sort="ascending" aria-label=": activate to sort column descending" style="width: 13px;"><input type="checkbox" id="check-all"></th>
+                                                                    <th class="sorting" tabindex="0" aria-controls="datatable-checkbox" rowspan="1" colspan="1" style="width: 13px;"><input type="checkbox" onclick="toggle(this)"></th>
                                                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 128px;">
                                                                         Name
                                                                     </th>
@@ -173,21 +180,26 @@
                                                                         Sale
                                                                     </th>
                                                                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 71px;">
-                                                                        Doing
+                                                                        Task
                                                                     </th>
                                                                 </tr>
                                                                 </thead>
     
     
                                                                 <tbody>
-                                                                <% allProducts.forEach(function(product){%>
+                                                                <% allProducts.forEach(function(product){ %>
                                                                 <tr>
-                                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable-checkbox" rowspan="1" colspan="1" aria-sort="ascending" aria-label=": activate to sort column descending" style="width: 13px;"><input type="checkbox" id="check-all"></th>
+                                                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable-checkbox" rowspan="1" colspan="1" style="width: 13px;"><input type="checkbox" name="chosen-item" value="<%= product._id %>" onclick="enableDeleteButton(this)"></th>
                                                                     <td><%= product.name %></td>
                                                                     <td><%= product.stock %></td>
                                                                     <td><%= product.price %></td>
                                                                     <td><%= product.dateAdded%></td>
-                                                                    <td><%= product.sale %></td>
+                                                                    <% if (product.isDeleted){ %>
+                                                                        <td>true</td>
+                                                                    <% }else{ %>
+                                                                        <td>false</td>
+                                                                    <% } %>
+                                                                    <!-- <td><%= product.sale %></td> -->
                                                                     <td>
                                                                         <a href="product/<%= product._id %>"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</button></a>
                                                                     </td>

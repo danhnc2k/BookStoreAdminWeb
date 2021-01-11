@@ -47,3 +47,12 @@ exports.update = async function(id, name, description, size, subCategory, stock,
         labels: label
     }});
 }
+
+exports.delete = async function(idList){
+    let id_list = idList.substring(0, idList.length-1).split(';');
+    await id_list.forEach(async function(id){
+        await products.updateOne({_id: ObjectId(id)},{ $set:{
+            isDeleted: true
+        }});
+    });
+}

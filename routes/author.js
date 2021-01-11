@@ -6,7 +6,8 @@ const authorController=require('../controllers/authorController')
 router.get('/', authorController.getLogin);
 router.get('/login',authorController.getLogin);
 router.get('/users',authorController.getUsers);
-router.get('/profile',authorController.getProfile);
+router.get('/user/:id',authorController.getUserProfile);
+router.post('/task/user/lock',authorController.lockUser);
 router.get('/editProfile', authorController.getEditProfile);
 
 module.exports = router;

@@ -1,4 +1,4 @@
-const userServices = require('../models/service/orderService');
+const userServices = require('../models/service/userService');
 
 
 exports.getLogin = async function(req, res, next){
@@ -24,22 +24,15 @@ exports.getUsers = async function (req, res, next){
     }
     if (search_value && search_value != "")
     {
-        filter['firstName'||'lastName'] = new RegExp(`${search_value}`, "i");
+        filter['firstName'] = new RegExp(`${search_value}`, "i");
     }
-    const paginate = await productServices.listProducts(filter, page, itemPerPageList[length_value]);
-    res.render("products", {
-        categories: categoriesList,
-        prices: priceList,
-        sizes: sizeList,
-        labels: labelList,
+    let paginate = await userServices.listUsers(filter, page, itemPerPageList[length_value]);
+    res.render("users", {
         lengths: itemPerPageList,
         lengthValue: length_value,
         searchValue: search_value,
-        priceValue: price_value,
-        sizeValue: size_value,
-        labelValue: label_value,
-        allProducts: paginate.docs,
-        totalProducts: paginate.totalDocs,
+        allUsers: paginate.docs,
+        totalUsers: paginate.totalDocs,
         hasNextPage: paginate.hasNextPage,
         hasPrevPage: paginate.hasPrevPage,
         nextPage: paginate.nextPage,
@@ -49,8 +42,23 @@ exports.getUsers = async function (req, res, next){
     });
 }
 
-exports.getProfile = async function (req, res, next){
-    res.render('profile');
+exports.getUserProfile = async function (req, res, next){
+    const user = await userServices.getUser(req.params.id);
+    res.render('userProfile',{
+        id: user._id,
+        username: user.username,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        phoneNumber: user.phoneNumber,
+        email: user.email,
+        isLocked: user.isLocked,
+        avatar: user.avatar
+    });
+}
+exports.lockUser = async function(req, res, next){
+    const id = req.body.id;
+    await userServices.lockUser(id);
+    res.redirect('/user/'+id);
 }
 exports.getEditProfile = async function (req, res, next) {
     res.render('editProfile');
