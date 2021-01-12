@@ -1,6 +1,7 @@
 const productServices = require('../models/service/productService');
 const categoryServices = require('../models/service/categoryService');
 const labelServices = require('../models/service/labelService');
+const ProductModel = require('../models/product');
 
 
 exports.getProducts = async function(req, res, next){
@@ -84,9 +85,13 @@ exports.getIndex = async function(req, res, next){
 
     });
 }
-exports.getAddPro = async function (req, res, next) {
-    res.render('addPro', {
+exports.getAddProductForm = async function (req, res, next) {
+    const categoriesList = await categoryServices.listCategories();
+    const labelsList = await labelServices.listLabels();
 
+    res.render('addProduct',{
+        categories: categoriesList,
+        labels: labelsList
     });
 }
 exports.getProductDetail = async function(req, res, next){
@@ -126,20 +131,30 @@ exports.getProductDetail = async function(req, res, next){
         imagesURL: product.images,
         materials: materialStr,
         buyCount: product.buyCounts,
-        label: product.labels
+        label: product.labels,
+        viewCount: product.viewCounts,
+        sale: product.sale,
+        cost: product.cost
     });
+}
+
+exports.addProduct = async function(req, res, next){
+    await productServices.add(req.body.name,req.body.description,req.body.size,
+        req.body.subCategory,req.body.stock,req.body.price,req.body.color,req.body.image,
+        req.body.material,req.body.label,req.body.sale,req.body.cost);
+    res.redirect('/products/list');
 }
 
 exports.updateProduct = async function(req, res, next){
     await productServices.update(req.body.id,req.body.name,req.body.description,req.body.size,
-        req.body.subCategory,req.body.stock,req.body.price,req.body.color,
-        req.body.image,req.body.material,req.body.buyCount,req.body.label);
-    res.redirect('/product/'+req.body.id);
+        req.body.subCategory,req.body.stock,req.body.price,req.body.color,req.body.image,
+        req.body.material,req.body.buyCount,req.body.label,req.body.sale,req.body.cost);
+    res.redirect('/products/detail/'+req.body.id);
 }
 
 exports.deleteProduct = async function(req, res, next){
     await productServices.delete(req.body.deleteIdList);
-    res.redirect('/products');
+    res.redirect('/products/list');
 }
 
 exports.getDelivered = async function(req, res, next){

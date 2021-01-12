@@ -58,7 +58,7 @@ exports.getUserProfile = async function (req, res, next){
 exports.lockUser = async function(req, res, next){
     const id = req.body.id;
     await userServices.lockUser(id);
-    res.redirect('/user/'+id);
+    res.redirect('/users/detail/'+id);
 }
 exports.getEditProfile = async function (req, res, next) {
     res.render('editProfile');

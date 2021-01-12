@@ -16,11 +16,13 @@ const productSchema = new schema(
     },
     stock: {
       type: Number,
-      required: true
+      required: true,
+      default: 0
     },
     price: {
       type: Number,
-      required: true
+      required: true,
+      default: 0
     },
     size: {
       type: [String],
@@ -69,6 +71,21 @@ const productSchema = new schema(
       type: Boolean,
       required: true,
       default: false
+    },
+    viewCounts: {
+      type: Number,
+      required: false,
+      default: 0
+    },
+    sale: {
+      type: Number,
+      required: false,
+      default: 0
+    },
+    cost: {
+      type: Number,
+      required: true,
+      default: 0
     },
     comment: {
       total: {

@@ -35,11 +35,11 @@
                                                                       <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                                                                       <ul class="dropdown-item" id="product-maintype">
                                                                           <% categories.forEach(function(main){ %>
-                                                                              <li><a class="dropdown-item" href="/products/<%= main._id %>"><%= main.name %></a></li>
+                                                                              <li><a class="dropdown-item" href="/list/<%= main._id %>"><%= main.name %></a></li>
                                                                               <div class="tt-collapse-content">
                                                                                   <ul class="tt-list-row" id="product-subtype">
                                                                                       <% main.childName.forEach(function(sub){ %>
-                                                                                          <li><a href="/products/<%= main._id %>/<%= sub._id %>"><%= sub.name %></a></li>
+                                                                                          <li><a href="/list/<%= main._id %>/<%= sub._id %>"><%= sub.name %></a></li>
                                                                                       <% }); %>
                                                                                   </ul>
                                                                               </div>
@@ -148,8 +148,8 @@
                                                     <button type="submit" class="btn btn-primary btn-sm">Lọc</button>
                                                 </form>
                                                 <div>
-                                                    <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</button>
-                                                    <form method="POST" action="/task/product/delete">
+                                                    <a href="add/"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>Thêm</button></a>
+                                                    <form method="POST" action="task/delete">
                                                         <input name="deleteIdList" id="id-list" hidden>
                                                         <button onclick="confirmDelete()" type="submit" class="btn btn-success btn-sm" id="delete-button">
                                                             <i class="fa fa-trash"></i>
@@ -203,7 +203,7 @@
                                                                     <% } %>
                                                                     <!-- <td><%= product.sale %></td> -->
                                                                     <td>
-                                                                        <a href="product/<%= product._id %>"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</button></a>
+                                                                        <a href="detail/<%= product._id %>"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</button></a>
                                                                     </td>
                                                                 </tr>
                                                                 <% }); %>
