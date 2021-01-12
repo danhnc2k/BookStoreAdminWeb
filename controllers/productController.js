@@ -1,6 +1,7 @@
 const productServices = require('../models/service/productService');
 const categoryServices = require('../models/service/categoryService');
 const labelServices = require('../models/service/labelService');
+const orderServices = require('../models/service/orderService');
 
 
 exports.getProducts = async function(req, res, next){
@@ -159,9 +160,53 @@ exports.deleteProduct = async function(req, res, next){
 
 
 exports.getStatistic = async function(req, res, next){
-    
-    res.render("productStatistic", {
+    let today = new Date();
+    let current_year = today.getFullYear();
+    let year_value;
+    if(req.query.yearInput){
+        year_value = req.query.yearInput;
+    }else{
+        year_value = today.getUTCFullYear();
+    }
+    let date_value;
+    if(req.query.dateInput){
+        date_value = req.query.dateInput;
+    }else{
+        date_value = today.getUTCDate().toString() + '-' + (today.getUTCMonth()+1).toString() + '-' + current_year.toString();
+    }
+    let month_profit = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let quarter_profit = [0, 0, 0, 0];
+    let year_profit = [0, 0, 0, 0, 0];
+
+    const allOrders = await orderServices.allOrders();
+    const allProducts = await productServices.allProducts();
+
+    allOrders.forEach(function(order){
+        let orderDate = order.date;
+        let day = orderDate.getUTCDate();
+        let month = orderDate.getUTCMonth();
+        let year = orderDate.getUTCFullYear();
         
+
+
+        if (year == year_value){
+            month_profit[month] += order.total;
+        }
+        if (current_year - 2 <= year && year <= current_year + 2){
+            year_profit[current_year-year+2] += order.total;
+        }
+    });
+    for (var x=0; x < 4; x++){
+        for (var y=0; y < 3; y++){
+            quarter_profit[x] += month_profit[3*x+y];
+        }
+    }
+    res.render("productStatistic", {
+        yearInput: year_value,
+        dateInput: date_value,
+        monthProfit: month_profit,
+        quarterProfit: quarter_profit,
+        yearProfit: year_profit
     });
 }
 
