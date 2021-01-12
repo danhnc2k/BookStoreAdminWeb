@@ -5,9 +5,11 @@ const authorController=require('../controllers/authorController')
 /* GET home page. */
 router.get('/', authorController.getLogin);
 router.get('/login',authorController.getLogin);
-router.get('/users',authorController.getUsers);
-router.get('/user/:id',authorController.getUserProfile);
-router.post('/task/user/lock',authorController.lockUser);
+router.get('/users/list',authorController.getUsers);
+router.get('/users/detail/:id',authorController.getUserProfile);
+
+
+router.post('/task/lock',authorController.lockUser);
 router.get('/editProfile', authorController.getEditProfile);
 
 module.exports = router;
