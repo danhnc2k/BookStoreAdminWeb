@@ -1,7 +1,6 @@
 const productServices = require('../models/service/productService');
 const categoryServices = require('../models/service/categoryService');
 const labelServices = require('../models/service/labelService');
-const ProductModel = require('../models/product');
 
 
 exports.getProducts = async function(req, res, next){
@@ -157,10 +156,11 @@ exports.deleteProduct = async function(req, res, next){
     res.redirect('/products/list');
 }
 
-exports.getDelivered = async function(req, res, next){
-    const page = +req.query.page || 1;
+
+
+exports.getStatistic = async function(req, res, next){
     
-    res.render("delivered", {
+    res.render("productStatistic", {
         
     });
 }

@@ -12,7 +12,7 @@ router.post('/task/add', productController.addProduct);
 router.post('/task/update', productController.updateProduct);
 router.post('/task/delete', productController.deleteProduct);
 
-router.get('/delivered', productController.getDelivered);
+router.get('/statistic', productController.getStatistic);
 router.get('/delivering', productController.getDelivering);
 router.get('/deliversoon', productController.getDeliversoon);
 
