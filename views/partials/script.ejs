@@ -1,4 +1,188 @@
+<script>
+    function check(id) {
+    let number = document.getElementById(id).value;
 
+    let isNumber = true;
+    let hasComma = false;
+    let isMinus = false;
+    
+    
+
+    
+    if (number == "") {
+        document.getElementById("btn-update").hidden = true;
+        if (id == "label"){
+        document.getElementById('notificationlabel').innerHTML = "Hãy nhập dữ liệu ở ô Label";
+    } else if (id == "subCategory"){
+        document.getElementById('notificationsubCategory').innerHTML = "Hãy nhập dữ liệu ở ô SubCategory";
+    } else if (id == "firstName"){
+        document.getElementById('notificationFirName').innerHTML = "Hãy nhập dữ liệu ở ô First Name";
+    } else if (id == "lastName"){
+        document.getElementById('notificationLastName').innerHTML = "Hãy nhập dữ liệu ở ô Last Name";
+    } else if (id == "phoneNumber"){
+        document.getElementById('notificationPhone').innerHTML = "Hãy nhập dữ liệu ở ô Phone";
+    } else if (id == "email"){
+        document.getElementById('notificationEmail').innerHTML = "Hãy nhập dữ liệu ở ô Email";
+    } else if (id == "avatar"){
+        document.getElementById('notificationAva').innerHTML = "Hãy nhập dữ liệu ở ô Avatar";
+    } else if (id == "name"){
+        document.getElementById('notificationName').innerHTML = "Hãy nhập dữ liệu ở ô Name";
+    } else if (id == "description"){
+        document.getElementById('notificationDescription').innerHTML = "Hãy nhập dữ liệu ở ô Description";
+    } else if (id == "size"){
+        document.getElementById('notificationSize').innerHTML = "Hãy nhập dữ liệu ở ô Size";
+    } else if (id == "color"){
+        document.getElementById('notificationColor').innerHTML = "Hãy nhập dữ liệu ở ô Color";
+    } else if (id == "material"){
+        document.getElementById('notificationMaterial').innerHTML = "Hãy nhập dữ liệu ở ô Material";
+    } else if (id == "image"){
+        document.getElementById('notificationImage').innerHTML = "Hãy nhập dữ liệu ở ô Image";
+    } else if (id == "price"){
+        document.getElementById('notificationPrice').innerHTML = "Hãy nhập số ở ô Price";
+    } else if (id == "cost") {
+        document.getElementById('notificationCost').innerHTML = "Hãy nhập số ở ô Cost";
+    } else if (id == "stock") {
+        document.getElementById('notificationStock').innerHTML ="Hãy nhập số ở ô Stock";
+    } else if (id == "buyCount") {
+        document.getElementById('notificationBuyCount').innerHTML = "Hãy nhập số ở ô Buy Count";
+    } else if (id == "sale") {
+        document.getElementById('notificationSale').innerHTML = "Hãy nhập số ở ô Buy Count";
+    }
+    return false;
+}
+
+    for (let i = 0; i < number.length; i = i + 1) {
+        if (number.charCodeAt(i) == 46) {
+            if (hasComma == false) {
+                hasComma = true;
+            } else {
+                isNumber = false;
+            }
+        } else if (number.charCodeAt(i) == 45) {
+            if (i != 0) {
+                isNumber = false;
+            } else if (isMinus == false) {
+                isMinus = true;
+            } else {
+                isNumber = false;
+            }
+        } else if (number.charCodeAt(i) < 48 || number.charCodeAt(i) > 57) {
+            isNumber = false;
+        }
+    }
+    if (isNumber == false) {
+        
+        if (id == "price") {
+            document.getElementById("btn-update").hidden = true;
+            document.getElementById("notificationPrice").innerHTML = "Giá trị nhập ở ô Price không phải là số";
+            return false;
+        } else if (id == "cost") {
+            document.getElementById("btn-update").hidden = true;
+            document.getElementById("notificationCost").innerHTML = "Giá trị nhập ở ô Cost không phải là số";
+            return false;
+        } else if (id == "stock") {
+            document.getElementById("btn-update").hidden = true;
+            document.getElementById("notificationStock").innerHTML = "Giá trị nhập ở ô Stock không phải là số";
+            return false;
+        } else if (id == "buyCount") {
+            document.getElementById("btn-update").hidden = true;
+            document.getElementById("notificationBuyCount").innerHTML = "Giá trị nhập ở ô Buy Count không phải là số";
+            return false;
+        } else if (id == "sale") {
+            document.getElementById("btn-update").hidden = true;
+            document.getElementById("notificationSale").innerHTML = "Giá trị nhập ở ô Sale không phải là số";
+            return false;
+        } else if (id == "label") {
+            document.getElementById("notificationlabel").innerHTML = "";
+            return true;
+        } else if (id == "subCategory") {
+            document.getElementById("notificationsubCategory").innerHTML = "";
+            return true;
+        } else if (id == "firstName") {
+            document.getElementById("notificationFirName").innerHTML = "";
+            return true;
+        } else if (id == "lastName") {
+            document.getElementById("notificationLastName").innerHTML = "";
+            return true;
+        } else if (id == "phoneNumber") {
+            document.getElementById("btn-update").hidden = true;
+            document.getElementById("notificationPhone").innerHTML = "Giá trị nhập ở ô Sale không phải là số";
+            return false;
+        } else if (id == "email") {
+            document.getElementById("notificationEmail").innerHTML = "";
+            return true;
+        } else if (id == "avatar") {
+            document.getElementById("notificationAva").innerHTML = "";
+            return true;
+        } else if (id == "name") {
+            document.getElementById("notificationName").innerHTML = "";
+            return true;
+        } else if (id == "description") {
+            document.getElementById("notificationDescription").innerHTML = "";
+            return true;
+        } else if (id == "size") {
+            document.getElementById("notificationSize").innerHTML = "";
+            return true;
+        } else if (id == "color") {
+            document.getElementById("notificationColor").innerHTML = "";
+            return true;
+        } else if (id == "material") {
+            document.getElementById("notificationMaterial").innerHTML = "";
+            return true;
+        } else if (id == "image") {
+            document.getElementById("notificationImage").innerHTML = "";
+            return true;
+        }
+        
+    } else {
+        if (id == "phoneNumber") {
+            document.getElementById("notificationPhone").innerHTML = "";
+        } else
+        if (id == "price") {
+            document.getElementById("notificationPrice").innerHTML = "";
+        } else 
+        if (id == "cost") {
+            document.getElementById("notificationCost").innerHTML = "";
+        } else 
+        if (id == "stock") {
+            document.getElementById("notificationStock").innerHTML = "";
+        } else 
+        if (id == "buyCount") {
+            document.getElementById("notificationBuyCount").innerHTML = "";
+        } else {
+            document.getElementById("notificationSale").innerHTML = "";
+            
+        }
+        return true;
+    }
+}
+function verify(form) {
+    if (check("name")==true && check("description")==true && check("size")==true && check("color")==true && check("material")==true && check("image")==true && check("price")==true && check("cost")==true && check("stock")==true && check("buyCount")==true && check("sale")==true){
+        document.getElementById("btn-update").hidden = false;
+    }   
+}
+function verifyAdmin(form) {  
+    if (check("firstName")==true && check("lastName")==true &&check("phoneNumber")==true &&check("email")==true &&check("avatar")==true ){
+        document.getElementById("btn-update").hidden = false;
+    }
+}
+function verifyAdd(form) {
+    if (check("name")==true && check("description")==true && check("size")==true && check("color")==true && check("material")==true && check("image")==true && check("price")==true && check("cost")==true && check("stock")==true && check("sale")==true){
+        document.getElementById("btn-update").hidden = false;
+    }   
+}
+function verifySubCate(form) {
+    if (check("subCategory")==true ){
+        document.getElementById("btn-update").hidden = false;
+    }   
+}
+function verifyLabel(form) {
+    if (check("label")==true ){
+        document.getElementById("btn-update").hidden = false;
+    }   
+}
+
+</script>
 <script>
     window.onload = function(){
         document.getElementById("delete-button").disabled = true;

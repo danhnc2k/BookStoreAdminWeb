@@ -9,3 +9,8 @@ exports.listOrders = async function(filter, pageNumber, itemPerPage){
     );
     return list;
 }
+
+exports.allOrders = async function(){
+    const list = await orders.find();
+    return list;
+}

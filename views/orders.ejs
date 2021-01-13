@@ -39,7 +39,7 @@
                                                         </select>
                                                     </div>
                                                     <label class="col-md-1 col-sm-1" for="">Show</label>
-                                                        <div class="col-md-1 col-sm-1">
+                                                        <div class="col-md-2 col-sm-2">
                                                             <select name="length" aria-controls="datatable" class="form-control">
                                                                 <% var index; for (index = 0; index < lengths.length; index++){ %>
                                                                     <% if (lengthValue == index) { %>
@@ -58,18 +58,21 @@
                                             <div class="clearfix"></div>
                                             <div class="card-box table-responsive">
                                                 <tbody>
+                                                    <% var index=0; %>
                                                     <% allOrders.forEach(function(order){%>
                                                         <div class="col-md-12 col-sm-12  ">
                                                             <div class="table">
                                                                 <div class="row">
                                                                     <div class="col-md-6 col-sm-6">
-                                                                        <h2>Tên khách hàng <small><%= order.firstName + ' ' + order.lastName %></small></h2><br>
+                                                                        <h2>Tên khách hàng <small><%= nameList[index] %></small></h2><br>
+                                                                        <% index++; %>
                                                                         <h2>SĐT &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<small><%= order.phoneNumber %></small></h2><br>
                                                                         <h2>Địa chỉ &emsp;&emsp;&emsp;&nbsp;<small><%= order.address %></small></h2><br>
                                                                     </div>
                                                                     <div class="col-sm-6 col-sm-6">
-                                                                        <h2>Tổng tiền    &emsp;&emsp; &nbsp;&nbsp; <small><%= order.total %></small></h2><br>
-                                                                        <h2>Trạng thái     &emsp;&emsp;&nbsp;&nbsp;&nbsp;<small><%= order.status %></small></h2><br>
+                                                                        <h2>Ngày mua    &emsp;&emsp; &nbsp;&nbsp; <small><%= order.date %></small></h2><br>
+                                                                        <h2>Tổng tiền    &emsp;&emsp; &nbsp;&nbsp; <small><%= order.cart.totalPrice %></small></h2><br>
+                                                                        <h2>Trạng thái     &emsp;&emsp;&nbsp;&nbsp;&nbsp;<small><%= order.deliverStatus %></small></h2><br>
                                                                     </div>
                                                                 </div>
                                                                 <div class="x_content">
@@ -88,13 +91,14 @@
                                                                         </tr>
                                                                       </thead>
                                                                       <tbody>
-                                                                        <% order.items.forEach(function(item){ %>
+                                                                        <% var cart = order.cart.items %>
+                                                                        <% for (var id in cart) { %>
                                                                             <tr>
-                                                                                <td><%= item.name %></td>
-                                                                                <td><%= item.price %></td>
-                                                                                <td><%= item.amount %></td>
+                                                                                <td><%= cart[id].item.name %></td>
+                                                                                <td><%= cart[id].item.price %></td>
+                                                                                <td><%= cart[id].qty %></td>
                                                                             </tr>
-                                                                        <% }); %>
+                                                                        <% } %>
                                                                       </tbody>
                                                                     </table>
                                                                 </div>
@@ -111,17 +115,17 @@
                                                 <div class="col-sm-7">
                                                     <nav aria-label="Page navigation example">
                                                         <ul class="pagination justify-content-end">
-                                                            <li class="page-item"><a class="page-link" href="?status=<%= statusValue %>&page=1">First Page</a></li>
+                                                            <li class="page-item"><a class="page-link" href="?length=<%= lengthValue %>&status=<%= statusValue %>&page=1">First Page</a></li>
                                                             <% if(hasPrevPage){ %>
-                                                            <li class="page-item"><a class="page-link" href="?status=<%= statusValue %>&page=<%= prevPage %>">Previous</a></li>
-                                                            <li class="page-item"><a class="page-link" href="?status=<%= statusValue %>&page=<%= currentPage - 1 %>"><%= currentPage - 1 %></a></li>
+                                                            <li class="page-item"><a class="page-link" href="?length=<%= lengthValue %>&status=<%= statusValue %>&page=<%= prevPage %>">Previous</a></li>
+                                                            <li class="page-item"><a class="page-link" href="?length=<%= lengthValue %>&status=<%= statusValue %>&page=<%= currentPage - 1 %>"><%= currentPage - 1 %></a></li>
                                                             <% } %>
-                                                            <li class="page-item active"><a class="page-link" href="?status=<%= statusValue %>&page=<%= currentPage %>"><%= currentPage %></a></li>
+                                                            <li class="page-item active"><a class="page-link" href="?length=<%= lengthValue %>&status=<%= statusValue %>&page=<%= currentPage %>"><%= currentPage %></a></li>
                                                             <% if(hasNextPage){ %>
-                                                            <li class="page-item"><a class="page-link" href="?status=<%= statusValue %>&page=<%= currentPage + 1 %>"><%= currentPage + 1 %></a></li>
-                                                            <li class="page-item"><a class="page-link" href="?status=<%= statusValue %>&page=<%= nextPage %>">Next</a></li>
+                                                            <li class="page-item"><a class="page-link" href="?length=<%= lengthValue %>&status=<%= statusValue %>&page=<%= currentPage + 1 %>"><%= currentPage + 1 %></a></li>
+                                                            <li class="page-item"><a class="page-link" href="?length=<%= lengthValue %>&status=<%= statusValue %>&page=<%= nextPage %>">Next</a></li>
                                                             <% } %>
-                                                            <li class="page-item"><a class="page-link" href="?status=<%= statusValue %>&page=<%= totalPages %>">Last Page</a></li>
+                                                            <li class="page-item"><a class="page-link" href="?length=<%= lengthValue %>&status=<%= statusValue %>&page=<%= totalPages %>">Last Page</a></li>
                                                         </ul>
                                                     </nav>
                                                 </div>

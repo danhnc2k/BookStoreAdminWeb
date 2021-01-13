@@ -3,62 +3,38 @@ const paginate = require('mongoose-paginate-v2');
 
 const schema = mongoose.Schema;
 
-const orderSchema = new schema(
-  {
-    userId: {
-        type: String,
-        required: true
-    },
-    firstName: {
-      type: String,
-      required: true
-    }, 
-    lastName: {
-      type: String,
-      required: true
-    },
-    phoneNumber: {
-      type: Number,
-      required: true
-    },
-    address: {
-      type: String,
-      required: true
-    },
-    items: [
-        {
-          productId: {
-            type: String
-          },
-          name: {
-            type: String
-          },
-          price: {
-            type: Number
-          },
-          amount: {
-            type: Number
-          }
-        }
-    ],
-    date: {
-      type: Date,
-      required: true,
-      default: Date.now
-    },
-    status: {
-      type: Number,
-      required: true
-    },
-    total: {
-      type: Number,
-      required: true
-    }
+const orderSchema = new schema({
+  user: {
+    type: schema.Types.ObjectId,
+    ref: "User"
   },
-  {
-    collection: 'Orders'
+  cart: { type: Object, required: true },
+  address: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: Date,
+    required: false,
+    default: Date.now
+  },
+  phoneNumber: {
+    type: Number,
+    required: true
+  },
+  status: {
+    type: String,
+    required: true
+  },
+  deliverStatus: {
+    type: Number,
+    required: false,
+    default: 0
   }
-);
+},
+{ 
+  collection : 'Orders' 
+});
 
 orderSchema.plugin(paginate);
 

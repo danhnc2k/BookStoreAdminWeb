@@ -11,7 +11,10 @@ exports.listProducts = async function(filter, pageNumber, itemPerPage){
     );
     return list;
 }
-
+exports.allProducts = async function(){
+    const list = await products.findById();
+    return list;
+}
 exports.getProduct = async function(id){
     const product = await products.findById(id);
     return product;
@@ -101,3 +104,4 @@ exports.delete = async function(idList){
         }});
     });
 }
+
