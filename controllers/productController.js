@@ -225,8 +225,3 @@ exports.getDeliversoon = async function(req, res, next){
         
     });
 }
-
-exports.postABC = async function(req, res, next){
-    const abc = 'abc';
-    redirect('/');
-}

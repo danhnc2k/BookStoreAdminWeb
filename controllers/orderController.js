@@ -1,6 +1,8 @@
 const orderServices = require('../models/service/orderService');
 const userServices = require('../models/service/userService');
 const productServices = require('../models/service/productService');
+const { ObjectId } = require('mongodb');
+
 
 
 exports.getOrders = async function(req, res, next){
@@ -21,15 +23,25 @@ exports.getOrders = async function(req, res, next){
     }
     if (status_value != undefined && status_value != -1)
     {
-        filter['status'] = {$eq: status_value};
+        filter['deliverStatus'] = {$eq: status_value};
     }
 
     const paginate = await orderServices.listOrders(filter, page, itemPerPageList[length_value]);
+    const name_list=[];
+    let name;
+    let id;
+    for (const doc of paginate.docs){
+        id = doc.user.toString();
+        name = await userServices.getUserFullname(id);
+        name_list.push(name);
+    }
+    
     res.render("orders", {
         statusList: status_list,
         statusValue: status_value,
         lengths: itemPerPageList,
         lengthValue: length_value,
+        nameList: name_list,
         allOrders: paginate.docs,
         totalOrders: paginate.totalDocs,
         hasNextPage: paginate.hasNextPage,

@@ -5,52 +5,62 @@ const schema = mongoose.Schema;
 
 const userSchema = new schema(
 {
-    avatar: {
-        type: String,
-        required: true
-    },
     username: {
         type: String,
         required: true
-    },
-    password: {
+      },
+      password: {
         type: String,
         required: true
-    },
-    firstName: {
+      },
+      firstName: {
         type: String,
-        required: true
-    },
-    lastName: {
+        required: false
+      },
+      lastName: {
         type: String,
-        required: true
-    },
-    email: {
+        required: false
+      },
+      email: {
         type: String,
-        required: true
-    },
-    phoneNumber: {
+        required: false
+      },
+      address: {
         type: String,
-        required: true
-    },
-    isLocked: {
+        required: false
+      },
+      phoneNumber: {
+        type: String,
+        required: false
+      },
+      Avatar: {
+        type: String,
+        required: false
+      },
+      role: {
+        type: Number,
+        required: false,
+        default: 0
+      },
+      isAuthenticated: {
         type: Boolean,
-        required: true,
+        required: false,
         default: false
-    },
-    isAuthenticated: {
+      },
+      isLock: {
         type: Boolean,
-        required: true,
+        required: false,
         default: false
-    },
-    cart: {
-        type: [String],
-        required: true
-    }
-    },
-    {
-        collection: 'Users'
-    }
+      },
+      verify_token: {
+        type: String,
+        required: false
+      },
+      cart: {
+        type: Object,
+        required: false
+      }
+    },{ collection : 'Users' }
 );
 
 userSchema.plugin(paginate);

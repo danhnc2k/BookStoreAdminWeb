@@ -18,6 +18,12 @@ exports.getUser = async function(id){
 
 exports.lockUser = async function(id){
     const user = await users.findById(id);
-    const lock = !user.isLocked;
-    await users.updateOne({_id: ObjectId(id)},{ $set:{ isLocked: lock }});
+    const lock = !user.isLock;
+    await users.updateOne({_id: ObjectId(id)},{ $set:{ isLock: lock }});
+}
+
+exports.getUserFullname = async function(id){
+    const user = await users.findOne({_id: ObjectId(id)});
+    let name = await user.firstName + ' ' + user.lastName;
+    return name;
 }
