@@ -7,6 +7,8 @@ router.get('/index', productController.getIndex);
 router.get('/list/:mainCategory?/:subCategory?', productController.getProducts);
 router.get('/detail/:id', productController.getProductDetail);
 router.get('/add', productController.getAddProductForm);
+router.get('/subCategory', productController.getsubCategory);
+router.get('/label', productController.getlabel);
 
 router.post('/task/add', productController.addProduct);
 router.post('/task/update', productController.updateProduct);

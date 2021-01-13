@@ -81,9 +81,13 @@ exports.getProducts = async function(req, res, next){
 }
 
 exports.getIndex = async function(req, res, next){
-    res.render('index',{
-
-    });
+    res.render('index');
+}
+exports.getsubCategory = async function (req, res, next) {
+    res.render('subCategory');
+}
+exports.getlabel = async function (req, res, next) {
+    res.render('label');
 }
 exports.getAddProductForm = async function (req, res, next) {
     const categoriesList = await categoryServices.listCategories();
