@@ -51,7 +51,7 @@ exports.getUserProfile = async function (req, res, next){
         lastName: user.lastName,
         phoneNumber: user.phoneNumber,
         email: user.email,
-        isLocked: user.isLocked,
+        isLocked: user.isLock,
         avatar: user.avatar
     });
 }
