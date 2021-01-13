@@ -80,9 +80,13 @@ exports.getProducts = async function(req, res, next){
 }
 
 exports.getIndex = async function(req, res, next){
-    res.render('index',{
-
-    });
+    res.render('index');
+}
+exports.getsubCategory = async function (req, res, next) {
+    res.render('subCategory');
+}
+exports.getlabel = async function (req, res, next) {
+    res.render('label');
 }
 exports.getAddPro = async function (req, res, next) {
     res.render('addPro', {
@@ -137,10 +141,11 @@ exports.postUpdate = async function(req, res, next){
     res.redirect('/');
 }
 
-exports.getDelivered = async function(req, res, next){
-    const page = +req.query.page || 1;
+
+
+exports.getStatistic = async function(req, res, next){
     
-    res.render("delivered", {
+    res.render("productStatistic", {
         
     });
 }

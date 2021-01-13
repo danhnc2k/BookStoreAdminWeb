@@ -34,6 +34,7 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
+                  
                   <div class="x_content">
                     <div class="col-md-5">
                       <div class="col-md-7 col-sm-7 ">
@@ -58,8 +59,14 @@
                     <div class="col-md-5">
                       <div class="container">
                         <h3 align="center">Update Product</h3>
+                        
                         <hr>
+<<<<<<< Updated upstream:views/detail.ejs
                             <form action="/detail/update" method="POST">
+=======
+                            <form class="form-group" action="/products/task/update" method="POST" name="form" onchange="verify(this.form)">
+                              <input type="text" class="form-control" name="id" value="<%= id %>" hidden>
+>>>>>>> Stashed changes:views/productDetail.ejs
                               <div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">ID</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
@@ -68,12 +75,14 @@
                               </div><div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">Name</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                  <input type="text" class="form-control" name="name" value="<%= name %>">
+                                  <input type="text" class="form-control" name="name" id="name" value="<%= name %>"onfocusout="check(this.id)">
+                                  <h4 style="color:red; font-style:italic" id="notificationName"></h4>
                                 </div>
                               </div><div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">Description</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                  <input type="text" class="form-control" name="description" value="<%= description %>">
+                                  <input type="text" class="form-control" name="description" id="description" value="<%= description %>"onfocusout="check(this.id)">
+                                  <h4 style="color:red; font-style:italic" id="notificationDescription"></h4>
                                 </div>
                               </div>
                               <div class="form-group row">
@@ -109,45 +118,63 @@
                               <div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">Size</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                  <input type="text" class="form-control" name="size" value="<%= sizes %>">
+                                  <input type="text" class="form-control" name="size" id="size" value="<%= sizes %>"onfocusout="check(this.id)">
+                                  <h4 style="color:red; font-style:italic" id="notificationSize"></h4>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">Color</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                  <input type="text" class="form-control" name="color" value="<%= colors %>">
+                                  <input type="text" class="form-control" name="color" id="color" value="<%= colors %>"onfocusout="check(this.id)">
+                                  <h4 style="color:red; font-style:italic" id="notificationColor"></h4>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">Material</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                  <input type="text" class="form-control" name="material" value="<%= materials %>"> 
+                                  <input type="text" class="form-control" name="material" id="material" value="<%= materials %>"onfocusout="check(this.id)"> 
+                                  <h4 style="color:red; font-style:italic" id="notificationMaterial"></h4>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">Image</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                  <input type="text" class="form-control" name="image" value="<%= images %>">
+                                  <input type="text" class="form-control" name="image" id="image" value="<%= images %>" onfocusout="check(this.id)">
+                                  <h4 style="color:red; font-style:italic" id="notificationImage"></h4>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">Price</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                  <input type="text" class="form-control" name="price" value="<%= price %>">
+                                  <input type="text" class="form-control" name="price" id="price" value="<%= price %>" onfocusout="check(this.id)" >
+                                  <h4 style="color:red; font-style:italic" id="notificationPrice"></h4>
                                 </div>
                               </div>
                               <div class="form-group row">
+<<<<<<< Updated upstream:views/detail.ejs
+=======
+                                <label class="control-label col-md-3 col-sm-3 col-xs-3">Cost</label>
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                  <input type="text" class="form-control" name="cost" id="cost" value="<%= cost %>" onfocusout="check(this.id)">
+                                  <h4 style="color:red; font-style:italic" id="notificationCost"></h4>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+>>>>>>> Stashed changes:views/productDetail.ejs
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">Stock</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                  <input type="text" class="form-control" name="stock" value="<%= stock %>">
+                                  <input type="text" class="form-control" name="stock" id="stock" value="<%= stock %>" onfocusout="check(this.id)">
+                                  <h4 style="color:red; font-style:italic" id="notificationStock"></h4>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-3">Buy Count</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                  <input type="text" class="form-control" name="buyCount" value="<%= buyCount %>">
+                                  <input type="text" class="form-control" name="buyCount" id="buyCount" value="<%= buyCount %>" onfocusout="check(this.id)">
+                                  <h4 style="color:red; font-style:italic" id="notificationBuyCount"></h4>
                                 </div>
                               </div>
+<<<<<<< Updated upstream:views/detail.ejs
                               <div class="ln_solid"></div>
                               <div class="form-group row">
                                 <div class="col-md-9 offset-md-3">
@@ -156,11 +183,38 @@
                                 <button type="submit"  class="btn btn-success">Turn Back</button>
                               </form>
                             </form>
+=======
+                              <div class="form-group row">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-3">Sale</label>
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                  <input type="text" class="form-control" name="sale" id="sale" value="<%= sale %>" onfocusout="check(this.id)">
+                                  <h4 style="color:red; font-style:italic" id="notificationSale"></h4>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-3">View Count</label>
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                  <input type="text" class="form-control" name="viewCount" id="viewCount" value="<%= viewCount %>" readonly>
+                                </div>
+                              </div>
+                              <div class="ln_solid"></div>
+                               
+                              <button  type="submit" id="btn-update" class="btn btn-primary"  hidden>Update</button>
+                              <a href="/products/list"><button type="button"  class="btn btn-success">Turn Back</button></a>
+                              
+                            </form>
+                            
+                        
+                            <!-- <form action="/products" method="GET">
+                              <button type="submit"  class="btn btn-success">Turn Back</button>
+                            </form> -->
+>>>>>>> Stashed changes:views/productDetail.ejs
                       </div>
                     </div>
                         </div>
                     </div>
                   </div>
+                
                 </div>
               </div>
             </div>
@@ -175,5 +229,7 @@
       </div>
       </div>
     </div>
+    <%- include('partials/script.ejs') %>
   </body>
+  
 </html>

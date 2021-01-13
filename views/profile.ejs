@@ -13,18 +13,7 @@
             <div class="">
               <div class="page-title">
                 <div class="title_left">
-                  <h3>User Profile</h3>
-                </div>
-  
-                <div class="title_right">
-                  <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search for...">
-                      <span class="input-group-btn">
-                        <button class="btn btn-secondary" type="button">Go!</button>
-                      </span>
-                    </div>
-                  </div>
+                  <h3>Admin Profile</h3>
                 </div>
               </div>
               
@@ -34,6 +23,7 @@
                 <div class="col-md-12 col-sm-12 ">
                   <div class="x_panel">
                     <div class="x_title">
+<<<<<<< Updated upstream:views/profile.ejs
                       <h2>User Report <small>Activity report</small></h2>
                       <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -48,6 +38,9 @@
                         <li><a class="close-link"><i class="fa fa-close"></i></a>
                         </li>
                       </ul>
+=======
+                      <h2>Information</h2>
+>>>>>>> Stashed changes:views/adminProfile.ejs
                       <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -62,6 +55,7 @@
   
                     </div>
                     <div style="font-size: 20px;" class="col-md-5">
+<<<<<<< Updated upstream:views/profile.ejs
                       <div class="container">
                         <h3>Samuel Doe</h3>
   
@@ -84,6 +78,50 @@
                         <button Onclick="return ConfirmUnBlock();" type="submit" class="btn btn-success"> <i class="fa fa-key"></i>
                         <br />
                       </div>
+=======
+                      <form class="form-group" action="/products/task/update" method="POST" name="form" onchange="verifyAdmin(this.form)">
+                        <div class="container">
+                          <input type="text" class="form-control" name="id" value="<%= id %>" hidden>
+                          <div class="form-group row">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3">First Name</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                              <input type="text" class="form-control" name="firstName" id="firstName" value="<%= firstName %>" oninput="check(this.id)">
+                              <h4 style="color:red; font-style:italic" id="notificationFirName"></h4>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Last Name</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                              <input type="text" class="form-control" name="lastName" id="lastName" value="<%= lastName %>" oninput="check(this.id)">
+                              <h4 style="color:red; font-style:italic" id="notificationLastName"></h4>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Phone</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                              <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" value="<%= phoneNumber %>" oninput="check(this.id)">
+                              <h4 style="color:red; font-style:italic" id="notificationPhone"></h4>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Email</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                              <input type="text" class="form-control" name="email" id="email" value="<%= email %>" oninput="check(this.id)">
+                              <h4 style="color:red; font-style:italic" id="notificationEmail"></h4>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Avatar</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                              <input type="text" class="form-control" name="avatar" id="avatar" value="<%= avatar %>" oninput="check(this.id)">
+                              <h4 style="color:red; font-style:italic" id="notificationAva"></h4>
+                            </div>
+                          </div>
+                        </div>
+                        <button  type="submit" id="btn-update" class="btn btn-primary"  hidden>Update</button>
+                        <a href="/products/list"><button type="button"  class="btn btn-success">Turn Back</button></a>
+                      </form>
+>>>>>>> Stashed changes:views/adminProfile.ejs
                     </div>
                   </div>
                 </div>
@@ -94,10 +132,12 @@
   
          
         </div>
+        </div>
       </div>
+    </body>
+    <footer>
       <%- include('partials/footer.ejs') %>
     </footer>
-    <%- include('partials/script.ejs') %>
     </body>
-  
+    <%- include('partials/script.ejs') %>
 </html>

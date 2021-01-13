@@ -3,6 +3,7 @@
 <head>
     <%- include('partials/head.ejs') %>
 </head>
+<<<<<<< Updated upstream
     <body>
         <body class="nav-md">
         <div class="container body">
@@ -58,74 +59,154 @@
                                                                       
                                                                     </li>
                                                                     
+=======
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <%- include('partials/navigation.ejs') %>
+            <div class="right_col" role="main" style="min-height: 454px;">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 ">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Default Example <small>Users</small></h2>
+
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="card-box table-responsive">
+                                            <div class="top_nav" style="margin:0;">
+                                                    <div class="">
+                                                        <div class="page-title">
+                                                            <ul class="navbar-left">
+                                                                <li class="nav-item dropdown open" style="padding-left: 15px;">
+                                                                    <div class="title_left">
+                                                                        
+                                                                    </div>
+                                                                  <a style="font-size: 25px;" href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                                                                    Loại sản phẩm
+                                                                  </a>
+                                                                  <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                                                                  <ul class="dropdown-item" id="product-maintype">
+                                                                      <% categories.forEach(function(main){ %>
+                                                                          <li><a class="dropdown-item" href="/list/<%= main._id %>"><%= main.name %></a></li>
+                                                                          <div class="tt-collapse-content">
+                                                                              <ul class="tt-list-row" id="product-subtype">
+                                                                                  <% main.childName.forEach(function(sub){ %>
+                                                                                      <li><a href="/list/<%= main._id %>/<%= sub._id %>"><%= sub.name %></a></li>
+                                                                                  <% }); %>
+                                                                              </ul>
+                                                                          </div>
+                                                                      <% }); %>
+>>>>>>> Stashed changes
                                                                   </ul>
+                                                                  </div>
+                                                                  
+                                                                </li>
                                                                 
-                                                            </div>
+                                                              </ul>
+                                                            
                                                         </div>
+<<<<<<< Updated upstream
                                                 </div>       
                                                 <form method="GET">
                                                     <div class="form-group row">
                                                         <label class="control-label col-md-3 col-sm-3 col-xs-3" for="">Giá</label>
+=======
+                                                    </div>
+                                            </div>       
+                                            <form method="GET">
+                                                <div class="form-group row">
+                                                    <div style="margin:0;padding:0 0 0 0px" class="col-md-5 col-sm-5   form-group row pull-right top_search">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" name="search" value="<%= searchValue %>" placeholder="Search for...">
+                                                             <a href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= currentPage %>">
+                                                            <span class="input-group-btn">
+                                                            <button class="btn btn-secondary" type="submit">Search</button>
+                                                            </span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-3" for="">Giá</label>
+                                                      <div class="col-md-9 col-sm-9 col-xs-9">
+                                                        <select name="price" class="form-control">
+                                                            <% if (priceValue) { %>
+                                                                <option value ="-1">All</option>
+                                                            <% } else { %>
+                                                                <option value ="-1" selected>All</option>
+                                                            <% } %>
+                                                            <% var index; for (index = 0; index < prices.length; index++){ %>
+                                                                <% if (priceValue == index) { %>
+                                                                    <option value="<%= index %>" selected>$<%= prices[index][0] %> — $<%= prices[index][1] %></option>
+                                                                <% } else { %>
+                                                                    <option value="<%= index %>">$<%= prices[index][0] %> — $<%= prices[index][1] %></option>
+                                                                <% } %>
+                                                            <% } %>
+                                                            <% if (priceValue == index) { %>
+                                                                <option value="<%= index %>" selected> $<%= prices[index - 1][1] %></option>
+                                                            <% } else { %>
+                                                                <option value="<%= index %>"> $<%= prices[index - 1][1] %></option>
+                                                            <% } %>
+                                                        </select>
+                                                      </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="">Kích thước</label>
+>>>>>>> Stashed changes
                                                           <div class="col-md-9 col-sm-9 col-xs-9">
-                                                            <select name="price" class="form-control">
-                                                                <% if (priceValue) { %>
+                                                            <select name="size" class="form-control">
+                                                                <% if (sizeValue) { %>
                                                                     <option value ="-1">All</option>
                                                                 <% } else { %>
                                                                     <option value ="-1" selected>All</option>
                                                                 <% } %>
-                                                                <% var index; for (index = 0; index < prices.length; index++){ %>
-                                                                    <% if (priceValue == index) { %>
-                                                                        <option value="<%= index %>" selected>$<%= prices[index][0] %> — $<%= prices[index][1] %></option>
+                                                                <% var index; for (index = 0; index < sizes.length; index++){ %>
+                                                                    <% if (sizeValue == index) { %>
+                                                                        <option value="<%= index %>" selected><%= sizes[index] %></option>
                                                                     <% } else { %>
-                                                                        <option value="<%= index %>">$<%= prices[index][0] %> — $<%= prices[index][1] %></option>
+                                                                        <option value="<%= index %>"><%= sizes[index] %></option>
                                                                     <% } %>
                                                                 <% } %>
-                                                                <% if (priceValue == index) { %>
-                                                                    <option value="<%= index %>" selected> $<%= prices[index - 1][1] %></option>
+                                                            </select>
+                                                          </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="">Thương hiệu</label>
+                                                          <div class="col-md-9 col-sm-9 col-xs-9">
+                                                            <select name="label" class="form-control">
+                                                                <% if (labelValue) { %>
+                                                                    <option value ="-1">All</option>
                                                                 <% } else { %>
-                                                                    <option value="<%= index %>"> $<%= prices[index - 1][1] %></option>
+                                                                    <option value ="-1" selected>All</option>
+                                                                <% } %>
+                                                                <% var index; for (index = 0; index < labels.length; index++){ %>
+                                                                    <% if (labelValue == index) { %>
+                                                                        <option value="<%= index %>" selected><%= labels[index].name %></option>
+                                                                    <% } else { %>
+                                                                        <option value="<%= index %>"><%= labels[index].name %></option>
+                                                                    <% } %>
                                                                 <% } %>
                                                             </select>
                                                           </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label class="control-label col-md-3 col-sm-3 col-xs-3" for="">Kích thước</label>
-                                                              <div class="col-md-9 col-sm-9 col-xs-9">
-                                                                <select name="size" class="form-control">
-                                                                    <% if (sizeValue) { %>
-                                                                        <option value ="-1">All</option>
-                                                                    <% } else { %>
-                                                                        <option value ="-1" selected>All</option>
-                                                                    <% } %>
-                                                                    <% var index; for (index = 0; index < sizes.length; index++){ %>
-                                                                        <% if (sizeValue == index) { %>
-                                                                            <option value="<%= index %>" selected><%= sizes[index] %></option>
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-3" for="">Show</label>
+                                                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                                                <select name="length" aria-controls="datatable" class="form-control">
+                                                                    <% var index; for (index = 0; index < lengths.length; index++){ %>
+                                                                        <% if (lengthValue == index) { %>
+                                                                            <option value="<%= index %>" selected><%= lengths[index] %></option>
                                                                         <% } else { %>
-                                                                            <option value="<%= index %>"><%= sizes[index] %></option>
+                                                                            <option value="<%= index %>"><%= lengths[index] %></option>
                                                                         <% } %>
                                                                     <% } %>
                                                                 </select>
-                                                              </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="control-label col-md-3 col-sm-3 col-xs-3" for="">Thương hiệu</label>
-                                                              <div class="col-md-9 col-sm-9 col-xs-9">
-                                                                <select name="label" class="form-control">
-                                                                    <% if (labelValue) { %>
-                                                                        <option value ="-1">All</option>
-                                                                    <% } else { %>
-                                                                        <option value ="-1" selected>All</option>
-                                                                    <% } %>
-                                                                    <% var index; for (index = 0; index < labels.length; index++){ %>
-                                                                        <% if (labelValue == index) { %>
-                                                                            <option value="<%= index %>" selected><%= labels[index].name %></option>
-                                                                        <% } else { %>
-                                                                            <option value="<%= index %>"><%= labels[index].name %></option>
-                                                                        <% } %>
-                                                                    <% } %>
-                                                                </select>
-                                                              </div>
                                                             </div>
+<<<<<<< Updated upstream
                                                             <div class="form-group row">
                                                                 <label class="control-label col-md-3 col-sm-3 col-xs-3" for="">Show</label>
                                                                   <div class="col-md-9 col-sm-9 col-xs-9">
@@ -196,28 +277,97 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>
+=======
+                                                        </div>
+                                                
+                                                
+                                                <button type="submit" class="btn btn-primary btn-sm">Lọc</button>
+                                            </form>
+                                            <div>
+                                                <a href="add/"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>Thêm</button></a>
+                                                <form method="POST" action="task/delete">
+                                                    <input name="deleteIdList" id="id-list" hidden>
+                                                    <button onclick="confirmDelete()" type="submit" class="btn btn-success btn-sm" id="delete-button">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                                <a href="task/delete">
+                                                    
+                                                </a>
+                                            </div>
+                                            
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <table id="datatable" class="table table-striped table-bordered dataTable no-footer" style="width:100%" role="grid" aria-describedby="datatable_info">
+                                                            <thead>
+                                                            <tr role="row">
+                                                                <th class="sorting" tabindex="0" aria-controls="datatable-checkbox" rowspan="1" colspan="1" style="width: 13px;"><input type="checkbox" onclick="toggle(this)"></th>
+                                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 128px;">
+                                                                    Name
+                                                                </th>
+                                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 210px;">
+                                                                    Stock
+                                                                </th>
+                                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 93px;">
+                                                                    Price
+                                                                </th>
+                                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 42px;">
+                                                                    dateAdded
+                                                                </th>
+                                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 85px;">
+                                                                    Sale
+                                                                </th>
+                                                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 71px;">
+                                                                    Task
+                                                                </th>
+                                                            </tr>
+                                                            </thead>
+
+
+                                                            <tbody>
+                                                            <% allProducts.forEach(function(product){ %>
+                                                            <tr>
+                                                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-checkbox" rowspan="1" colspan="1" style="width: 13px;"><input type="checkbox" name="chosen-item" value="<%= product._id %>" onclick="enableDeleteButton(this)"></th>
+                                                                <td><%= product.name %></td>
+                                                                <td><%= product.stock %></td>
+                                                                <td><%= product.price %></td>
+                                                                <td><%= product.dateAdded%></td>
+                                                                <% if (product.isDeleted){ %>
+                                                                    <td>true</td>
+                                                                <% }else{ %>
+                                                                    <td>false</td>
+                                                                <% } %>
+                                                                <!-- <td><%= product.sale %></td> -->
+                                                                <td>
+                                                                    <a href="detail/<%= product._id %>"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</button></a>
+                                                                </td>
+                                                            </tr>
+                                                            <% }); %>
+                                                            </tbody>
+                                                        </table>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-5">
-                                                            <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Total result: <%= totalProducts %></div>
-                                                        </div>
-                                                        <div class="col-sm-7">
-                                                            <nav aria-label="Page navigation example">
-                                                                <ul class="pagination justify-content-end">
-                                                                    <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=1">First Page</a></li>
-                                                                    <% if(hasPrevPage){ %>
-                                                                    <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= prevPage %>">Previous</a></li>
-                                                                    <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= currentPage - 1 %>"><%= currentPage - 1 %></a></li>
-                                                                    <% } %>
-                                                                    <li class="page-item active"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= currentPage %>"><%= currentPage %></a></li>
-                                                                    <% if(hasNextPage){ %>
-                                                                    <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= currentPage + 1 %>"><%= currentPage + 1 %></a></li>
-                                                                    <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= nextPage %>">Next</a></li>
-                                                                    <% } %>
-                                                                    <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= totalPages %>">Last Page</a></li>
-                                                                </ul>
-                                                            </nav>
-                                                        </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-5">
+                                                        <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Total result: <%= totalProducts %></div>
+>>>>>>> Stashed changes
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <nav aria-label="Page navigation example">
+                                                            <ul class="pagination justify-content-end">
+                                                                <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=1">First Page</a></li>
+                                                                <% if(hasPrevPage){ %>
+                                                                <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= prevPage %>">Previous</a></li>
+                                                                <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= currentPage - 1 %>"><%= currentPage - 1 %></a></li>
+                                                                <% } %>
+                                                                <li class="page-item active"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= currentPage %>"><%= currentPage %></a></li>
+                                                                <% if(hasNextPage){ %>
+                                                                <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= currentPage + 1 %>"><%= currentPage + 1 %></a></li>
+                                                                <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= nextPage %>">Next</a></li>
+                                                                <% } %>
+                                                                <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= totalPages %>">Last Page</a></li>
+                                                            </ul>
+                                                        </nav>
                                                     </div>
                                                 </div>
                                             </div>
@@ -225,14 +375,14 @@
                                     </div>
                                 </div>
                             </div>
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
-        </body>
-    <footer>
-        <%- include('partials/footer.ejs') %>
-    </footer>
-    <%- include('partials/script.ejs') %>
+    </div>
     </body>
+<footer>
+    <%- include('partials/footer.ejs') %>
+</footer>
+<%- include('partials/script.ejs') %>
 </html>

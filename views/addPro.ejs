@@ -35,6 +35,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
+<<<<<<< Updated upstream:views/addPro.ejs
                     <form class="form-horizontal form-label-left">
 
                       <div class="form-group row">
@@ -42,13 +43,27 @@
                         <div class="col-md-9 col-sm-9 col-xs-9">
                           <input type="text" class="form-control" data-inputmask="'mask' : '(999) 999-9999'">
                           
+=======
+                    
+                    <form class="form-group" action="/products/task/update" method="POST" name="form" onchange="verifyAdd(this.form)">
+                      <div class="form-group row">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3">Name</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                          <input type="text" class="form-control" name="name" id="name" placeholder="Áo khoác Luôn Vui Tươi" oninput="check(this.id)">
+                          <h4 style="color:red; font-style:italic" id="notificationName"></h4>
+>>>>>>> Stashed changes:views/addProduct.ejs
                         </div>
                       </div>
                       <div class="form-group row">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Description</label>
                         <div class="col-md-9 col-sm-9 col-xs-9">
+<<<<<<< Updated upstream:views/addPro.ejs
                           <input type="text" class="form-control" data-inputmask="'mask' : '(999) 999-9999'">
                           
+=======
+                          <input type="text" class="form-control" name="description" id="description" placeholder="Sản phẩm rất đẹp" oninput="check(this.id)">
+                          <h4 style="color:red; font-style:italic" id="notificationDescription"></h4>
+>>>>>>> Stashed changes:views/addProduct.ejs
                         </div>
                       </div>
                       <div class="form-group row">
@@ -68,61 +83,108 @@
                       <div class="form-group row">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Size</label>
                         <div class="col-md-9 col-sm-9 col-xs-9">
+<<<<<<< Updated upstream:views/addPro.ejs
                           <input type="text" class="form-control" data-inputmask="'mask' : '99-99999999'">
                           
+=======
+                          <input type="text" class="form-control" name="size" id="size" placeholder="S;M;L;XL;" oninput="check(this.id)">
+                          <h4 style="color:red; font-style:italic" id="notificationSize"></h4>
+>>>>>>> Stashed changes:views/addProduct.ejs
                         </div>
                       </div>
                       <div class="form-group row">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Color</label>
                         <div class="col-md-9 col-sm-9 col-xs-9">
+<<<<<<< Updated upstream:views/addPro.ejs
                           <input type="text" class="form-control" data-inputmask="'mask' : '9999-9999-9999-9999'">
                           
+=======
+                          <input type="text" class="form-control" name="color" id="color" placeholder="xanh;đỏ;tím;vàng;" oninput="check(this.id)">
+                          <h4 style="color:red; font-style:italic" id="notificationColor"></h4>
+>>>>>>> Stashed changes:views/addProduct.ejs
                         </div>
                       </div>
                       <div class="form-group row">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Material</label>
                         <div class="col-md-9 col-sm-9 col-xs-9">
+<<<<<<< Updated upstream:views/addPro.ejs
                           <input type="text" class="form-control" data-inputmask="'mask' : '(999) 999-9999'">
                           
+=======
+                          <input type="text" class="form-control" name="material" id="material" placeholder="da;vải cotton;" oninput="check(this.id)"> 
+                          <h4 style="color:red; font-style:italic" id="notificationMaterial"></h4>
+>>>>>>> Stashed changes:views/addProduct.ejs
                         </div>
                       </div>
                       <div class="form-group row">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Image</label>
                         <div class="col-md-9 col-sm-9 col-xs-9">
+<<<<<<< Updated upstream:views/addPro.ejs
                           <input type="text" class="form-control" data-inputmask="'mask': '99-999999'">
                           
+=======
+                          <input type="text" class="form-control" name="image" id="image" placeholder="imagelink1.abc;imagelink2.xyz;" oninput="check(this.id)">
+                          <h4 style="color:red; font-style:italic" id="notificationImage"></h4>
+>>>>>>> Stashed changes:views/addProduct.ejs
                         </div>
                       </div>
                       <div class="form-group row">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Price</label>
                         <div class="col-md-9 col-sm-9 col-xs-9">
+<<<<<<< Updated upstream:views/addPro.ejs
                           <input type="text" class="form-control" data-inputmask="'mask' : '****-****-****-****-****-***'">
                           
+=======
+                          <input type="text" class="form-control" name="price" id="price" placeholder="Giá tính theo $: 123" oninput="check(this.id)">
+                          <h4 style="color:red; font-style:italic" id="notificationPrice"></h4>
+>>>>>>> Stashed changes:views/addProduct.ejs
                         </div>
                       </div>
                       <div class="form-group row">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Stock</label>
                         <div class="col-md-9 col-sm-9 col-xs-9">
+<<<<<<< Updated upstream:views/addPro.ejs
                           <input type="text" class="form-control" data-inputmask="'mask' : '99-99999999'">
                           
+=======
+                          <input type="text" class="form-control" name="cost" id="cost" placeholder="Giá tính theo $: 111" oninput="check(this.id)">
+                          <h4 style="color:red; font-style:italic" id="notificationCost"></h4>
+>>>>>>> Stashed changes:views/addProduct.ejs
                         </div>
                       </div>
                       <div class="form-group row">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Buy Count</label>
                         <div class="col-md-9 col-sm-9 col-xs-9">
+<<<<<<< Updated upstream:views/addPro.ejs
                           <input type="text" class="form-control" data-inputmask="'mask' : '9999-9999-9999-9999'">
                           
+=======
+                          <input type="text" class="form-control" name="stock" id="stock" placeholder="Số lượng nhập: 100" oninput="check(this.id)">
+                          <h4 style="color:red; font-style:italic" id="notificationStock"></h4>
+>>>>>>> Stashed changes:views/addProduct.ejs
                         </div>
                       </div>
                       <div class="ln_solid"></div>
 
                       <div class="form-group row">
+<<<<<<< Updated upstream:views/addPro.ejs
                         <div class="col-md-9 offset-md-3">
                           <button type="submit" class="btn btn-primary">Cancel</button>
                           <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                       </div>
 
+=======
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3">Giảm giá</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                          <input type="text" class="form-control" name="sale" id="sale" placeholder="Tính theo %: 20" oninput="check(this.id)">
+                          <h4 style="color:red; font-style:italic" id="notificationSale"></h4>
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <button  type="submit" id="btn-update" class="btn btn-primary"  hidden>Update</button>
+                      <a href="/products/list"><button type="button"  class="btn btn-success">Turn Back</button></a>
+>>>>>>> Stashed changes:views/addProduct.ejs
                     </form>
                   </div>
                 </div>
@@ -139,5 +201,6 @@
       </div>
       </div>
     </div>
+    <%- include('partials/script.ejs') %>
   </body>
 </html>
