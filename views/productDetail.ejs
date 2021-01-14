@@ -40,7 +40,11 @@
                       <div class="product-images">
                         <% var index = 0; { %>
                           <a>
-                            <img src="../../images/product/<%= imagesURL[index] %>" alt="..." / width="400" height="500">
+                            <% if (imagesURL[index].search('http') != -1) {%>
+                              <img src="<%= imagesURL[index] %>" alt="..." / width="400" height="500">
+                            <%} else {%>
+                                <img src="../../images/product/<%= imagesURL[index] %>" alt="..." / width="400" height="500">
+                            <%}%>
                           </a>
                         <% } %>
                       </div>
@@ -49,7 +53,11 @@
                       <div class="product-gallery">
                         <% var index; for (index = 1; index < imagesURL.length; index++){ %>
                           <a>
-                            <img src="../../images/product/<%= imagesURL[index] %>" alt="..." / width="80" height="90">
+                            <% if (imagesURL[index].search('http') != -1) {%>
+                              <img src="<%= imagesURL[index] %>" alt="..." / width="80" height="90">
+                            <%} else {%>
+                              <img src="../../images/product/<%= imagesURL[index] %>" alt="..." / width="80" height="90">
+                            <%}%>
                           </a>
                         <% } %>
                       </div>
