@@ -6,6 +6,10 @@ const orderServices = require('../models/service/orderService');
 
 exports.getProducts = async function(req, res, next){
     //Categories list
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+        return;
+    }
     const categoriesList = await categoryServices.listCategories();
     //Price list\
     let priceList = [
@@ -80,16 +84,45 @@ exports.getProducts = async function(req, res, next){
     });
 }
 
-exports.getIndex = async function(req, res, next){
-    res.render('index');
-}
+
 exports.getsubCategory = async function (req, res, next) {
-    res.render('subCategory');
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+        return;
+    }
+    const categoriesList = await categoryServices.listCategories();
+    res.render('subCategory',{
+        categories: categoriesList
+    });
+}
+exports.addSubCategory = async function (req, res, next) {
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+        return;
+    }
+    await categoryServices.addCategory(req.body.mainCategory,req.body.subCategory);
+    res.redirect('/products/list');
 }
 exports.getlabel = async function (req, res, next) {
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+        return;
+    }
     res.render('label');
 }
+exports.addLabel = async function (req, res, next) {
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+        return;
+    }
+    await labelServices.addLabel(req.body.labelname);
+    res.redirect('/products/list');
+}
 exports.getAddProductForm = async function (req, res, next) {
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+        return;
+    }
     const categoriesList = await categoryServices.listCategories();
     const labelsList = await labelServices.listLabels();
 
@@ -99,6 +132,10 @@ exports.getAddProductForm = async function (req, res, next) {
     });
 }
 exports.getProductDetail = async function(req, res, next){
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+        return;
+    }
     const categoriesList = await categoryServices.listCategories();
     const labelsList = await labelServices.listLabels();
     const product = await productServices.getProduct(req.params.id);
@@ -143,6 +180,10 @@ exports.getProductDetail = async function(req, res, next){
 }
 
 exports.addProduct = async function(req, res, next){
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+        return;
+    }
     await productServices.add(req.body.name,req.body.description,req.body.size,
         req.body.subCategory,req.body.stock,req.body.price,req.body.color,req.body.image,
         req.body.material,req.body.label,req.body.sale,req.body.cost);
@@ -150,6 +191,10 @@ exports.addProduct = async function(req, res, next){
 }
 
 exports.updateProduct = async function(req, res, next){
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+        return;
+    }
     await productServices.update(req.body.id,req.body.name,req.body.description,req.body.size,
         req.body.subCategory,req.body.stock,req.body.price,req.body.color,req.body.image,
         req.body.material,req.body.buyCount,req.body.label,req.body.sale,req.body.cost);
@@ -157,6 +202,10 @@ exports.updateProduct = async function(req, res, next){
 }
 
 exports.deleteProduct = async function(req, res, next){
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+        return;
+    }
     await productServices.delete(req.body.deleteIdList);
     res.redirect('/products/list');
 }
@@ -164,6 +213,10 @@ exports.deleteProduct = async function(req, res, next){
 
 
 exports.getStatistic = async function(req, res, next){
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+        return;
+    }
     let today = new Date();
     let current_year = today.getFullYear();
     let year_value;
@@ -178,28 +231,59 @@ exports.getStatistic = async function(req, res, next){
     }else{
         date_value = today.getUTCDate().toString() + '-' + (today.getUTCMonth()+1).toString() + '-' + current_year.toString();
     }
+    let category_name = [];
+    let category_id = [];
+    let category_profit = [];
+    let year_name = [];
+
     let month_profit = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     let quarter_profit = [0, 0, 0, 0];
     let year_profit = [0, 0, 0, 0, 0];
+    
+    for (var i=-2;i<=2;i++){
+        var year_index = year_value + i;
+        year_name.push('Năm '+year_index.toString());
+    }
 
+    const allCategory = await categoryServices.listCategories();
+    allCategory.forEach(function(main){
+        main.childName.forEach(function(sub){
+            category_name.push(sub.name);
+            category_id.push(sub.id);
+        });
+    });
+    for (var i=0;i<category_id.length;i++){
+        category_profit.push(0);
+    }
     const allOrders = await orderServices.allOrders();
-    const allProducts = await productServices.allProducts();
-
-    allOrders.forEach(function(order){
+    let totalPrice;
+    let totalCost;
+    let categoryCost;
+    let pos;
+    let cart;
+    for (const order of allOrders){
+        totalPrice = order.cart.totalPrice;
+        totalCost = 0;
+        cart = order.cart.items;
+        for (var id in cart){
+            categoryCost = cart[id].item.cost*cart[id].qty;
+            totalCost += categoryCost;
+            pos = category_id.findIndex(id_cat => id_cat == cart[id].item.category.sub);
+            category_profit[pos] += categoryCost;
+        }
         let orderDate = order.date;
-        let day = orderDate.getUTCDate();
         let month = orderDate.getUTCMonth();
         let year = orderDate.getUTCFullYear();
         
-
-
         if (year == year_value){
-            month_profit[month] += order.total;
+            month_profit[month] += totalPrice-totalCost;
         }
         if (current_year - 2 <= year && year <= current_year + 2){
-            year_profit[current_year-year+2] += order.total;
+            year_profit[current_year-year+2] += totalPrice-totalCost;
         }
-    });
+        
+    }
+
     for (var x=0; x < 4; x++){
         for (var y=0; y < 3; y++){
             quarter_profit[x] += month_profit[3*x+y];
@@ -210,22 +294,10 @@ exports.getStatistic = async function(req, res, next){
         dateInput: date_value,
         monthProfit: month_profit,
         quarterProfit: quarter_profit,
-        yearProfit: year_profit
+        yearProfit: year_profit,
+        categoryProfit: category_profit,
+        categoryLabel: category_name,
+        yearLabel: year_name
     });
 }
 
-exports.getDelivering = async function(req, res, next){
-    const page = +req.query.page || 1;
-    
-    res.render("delivering", {
-        
-    });
-}
-
-exports.getDeliversoon = async function(req, res, next){
-    const page = +req.query.page || 1;
-    
-    res.render("deliversoon", {
-        
-    });
-}

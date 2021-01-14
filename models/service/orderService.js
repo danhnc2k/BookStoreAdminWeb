@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const orders = require('../order')
 
 exports.listOrders = async function(filter, pageNumber, itemPerPage){
@@ -13,4 +14,10 @@ exports.listOrders = async function(filter, pageNumber, itemPerPage){
 exports.allOrders = async function(){
     const list = await orders.find();
     return list;
+}
+
+exports.updateOrder = async function(id, status){
+    await orders.updateOne({_id: ObjectId(id)},{$set:{
+        deliverStatus: status
+    }});
 }
