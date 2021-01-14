@@ -16,7 +16,7 @@ exports.getProducts = async function(req, res, next){
         [0, 50],
         [51, 100],
         [101, 150],
-        [151, 200]
+        [151, 200],
     ];
     //Size list
     let sizeList = ["S", "M", "L", "XL"];
@@ -47,7 +47,12 @@ exports.getProducts = async function(req, res, next){
     }
     if (price_value && price_value != -1)
     {
-        filter['price'] = {$gt: priceList[price_value][0], $lt: priceList[price_value][1]};
+        if (price_value == priceList.length){
+            filter['price'] = {$gt: priceList[price_value - 1][0]};
+        }
+        else {
+            filter['price'] = {$gt: priceList[price_value][0], $lt: priceList[price_value][1]};
+        }
     }
     if (size_value && size_value != -1)
     {
