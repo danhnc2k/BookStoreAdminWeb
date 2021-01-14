@@ -17,12 +17,6 @@
                                 <input type="text" class="form-control" name="yearInput" value="<%= yearInput %>">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="control-label col-md-5 col-sm-5 col-xs-5">Nhập ngày(dd-mm-yyyy)</label>
-                            <div class="col-md-9 col-sm-9 col-xs-9">
-                                <input type="text" class="form-control" name="dateInput" value="<%= dateInput %>">
-                            </div>
-                        </div>
                         <div class="col-md-1 col-sm-1">
                             <button type="submit" class="btn btn-primary btn-sm">Apply</button>
                         </div>
@@ -30,11 +24,35 @@
                 </form>
                 <div class="col-md-5 col-sm-5">
                     <% for (var index=0; index < 12; index++){ %>
-                        <input type="text" name="monthArr[]" value="<%= monthProfit[index] %>" readonly/>
+                        <input type="text" name="monthArr[]" value="<%= monthProfit[index] %>" hidden/>
+                    <% } %>
+                    <% for (var index=0; index < 4; index++){ %>
+                        <input type="text" name="quarterArr[]" value="<%= quarterProfit[index] %>" hidden/>
+                    <% } %>
+                    <% for (var index=0; index < 5; index++){ %>
+                        <input type="text" name="yearArr[]" value="<%= yearProfit[index] %>" hidden/>
+                    <% } %>
+                    <% for (var index=0; index < yearLabel.length; index++){ %>
+                        <input type="text" name="yearLabelArr[]" value="<%= yearLabel[index] %>" hidden/>
+                    <% } %>
+                    <% for (var index=0; index < categoryLabel.length; index++){ %>
+                        <input type="text" name="categoryLabelArr[]" value="<%= categoryLabel[index] %>" hidden/>
+                    <% } %>
+                    <% for (var index=0; index < categoryProfit.length; index++){ %>
+                        <input type="text" name="categoryArr[]" value="<%= categoryProfit[index] %>" hidden/>
                     <% } %>
                 </div>
                 <div class="col-md-5 col-sm-5">
-                    <canvas id="myChart" width="200" height="200"></canvas>
+                    <canvas id="monthChart" width="200" height="200"></canvas>
+                </div>
+                <div class="col-md-5 col-sm-5">
+                    <canvas id="quarterChart" width="200" height="200"></canvas>
+                </div>
+                <div class="col-md-5 col-sm-5">
+                    <canvas id="yearChart" width="200" height="200"></canvas>
+                </div>
+                <div class="col-md-5 col-sm-5">
+                    <canvas id="categoryChart" width="200" height="200"></canvas>
                 </div>
             </div>
         
@@ -46,13 +64,14 @@
     </div>
 </body>
 <script>
+    //month
     let monthArr = document.getElementsByName('monthArr[]'); 
     let monthProfitArr=[];
     for (var i = 0; i < monthArr.length; i++) { 
         monthProfitArr.push(parseInt(monthArr[i].value));
     } 
-    let ctx = document.getElementById('myChart').getContext('2d');
-    let myChart = new Chart(ctx, {
+    let monthContext = document.getElementById('monthChart').getContext('2d');
+    let monthChart = new Chart(monthContext, {
     type: 'bar',
     data: {
         labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
@@ -71,7 +90,120 @@
                     beginAtZero: true
                 }   
             }]
-        }
+        },
+        title: {
+				display: true,
+				text: 'Biểu đồ doanh thu theo tháng'
+		}
+    }
+    });
+    //quarter
+    let quarterArr = document.getElementsByName('quarterArr[]'); 
+    let quarterProfitArr=[];
+    for (var i = 0; i < quarterArr.length; i++) { 
+        quarterProfitArr.push(parseInt(quarterArr[i].value));
+    } 
+    let quarterContext = document.getElementById('quarterChart').getContext('2d');
+    let quarterChart = new Chart(quarterContext, {
+    type: 'bar',
+    data: {
+        labels: ['Quý 1', 'Quý 2', 'Quý 3', 'Quý 4'],
+        datasets: [{
+            label: 'Profit',
+            data: quarterProfitArr,
+            backgroundColor:  'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }   
+            }]
+        },
+        title: {
+				display: true,
+				text: 'Biểu đồ doanh thu theo quý'
+		}
+    }
+    });
+    //year
+    let yearArr = document.getElementsByName('yearArr[]'); 
+    let yearProfitArr=[];
+    for (var i = 0; i < yearArr.length; i++) { 
+        yearProfitArr.push(parseInt(yearArr[i].value));
+    } 
+    let yearLabel = document.getElementsByName('yearLabelArr[]'); 
+    let yearLabelArr=[];
+    for (var i = 0; i < yearLabel.length; i++) { 
+        yearLabelArr.push(yearLabel[i].value);
+    } 
+    let yearContext = document.getElementById('yearChart').getContext('2d');
+    let yearChart = new Chart(yearContext, {
+    type: 'bar',
+    data: {
+        labels: yearLabelArr,
+        datasets: [{
+            label: 'Profit',
+            data: yearProfitArr,
+            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+            borderColor: 'rgba(255, 206, 86, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }   
+            }]
+        },
+        title: {
+				display: true,
+				text: 'Biểu đồ doanh thu theo năm'
+		}
+    }
+    });
+    //category
+    let categoryArr = document.getElementsByName('categoryArr[]'); 
+    let categoryProfitArr=[];
+    for (var i = 0; i < categoryArr.length; i++) { 
+        categoryProfitArr.push(parseInt(categoryArr[i].value));
+    } 
+    let categoryLabel = document.getElementsByName('categoryLabelArr[]'); 
+    let categoryLabelArr=[];
+    for (var i = 0; i < categoryLabel.length; i++) { 
+        categoryLabelArr.push(categoryLabel[i].value);
+    } 
+    let categoryContext = document.getElementById('categoryChart').getContext('2d');
+    let categoryChart = new Chart(categoryContext, {
+    type: 'bar',
+    data: {
+        labels: categoryLabelArr,
+        datasets: [{
+            label: 'Profit',
+            data: categoryProfitArr,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }   
+            }]
+        },
+        title: {
+				display: true,
+				text: 'Biểu đồ doanh thu theo các loại'
+		}
     }
     });
 </script>

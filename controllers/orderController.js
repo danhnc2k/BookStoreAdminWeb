@@ -6,7 +6,10 @@ const { ObjectId } = require('mongodb');
 
 
 exports.getOrders = async function(req, res, next){
-    let itemPerPageList = [5, 10, 15, 20];
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+    }else{
+        let itemPerPageList = [5, 10, 15, 20];
     let length_value;
     if (req.query.length){
         length_value = req.query.length;
@@ -51,5 +54,17 @@ exports.getOrders = async function(req, res, next){
         currentPage: paginate.page,
         totalPages: paginate.totalPages
     });
+    }
+    
 }
 
+exports.updateStatus = async function(req, res, next){
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+        return;
+    }
+    const id = req.body.id_order;
+    const status = req.body.status_value;
+    await orderServices.updateOrder(id, parseInt(status));
+    res.redirect('/orders/list');
+}

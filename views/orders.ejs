@@ -72,7 +72,29 @@
                                                                     <div class="col-sm-6 col-sm-6">
                                                                         <h2>Ngày mua    &emsp;&emsp; &nbsp;&nbsp; <small><%= order.date %></small></h2><br>
                                                                         <h2>Tổng tiền    &emsp;&emsp; &nbsp;&nbsp; <small><%= order.cart.totalPrice %></small></h2><br>
-                                                                        <h2>Trạng thái     &emsp;&emsp;&nbsp;&nbsp;&nbsp;<small><%= order.deliverStatus %></small></h2><br>
+                                                                        
+                                                                        <div class="row">
+                                                                            <h2>Trạng thái     &emsp;&emsp;&nbsp;&nbsp;&nbsp;<small></small></h2><br>
+                                                                            <label class="radio-inline">
+                                                                            <form action="/products/task/update-status" method="POST">
+                                                                                <input name="id_order" value="<%= order._id %>" hidden>
+                                                                                <% for(var i=0;i<statusList.length;i++){ %>
+                                                                                    <div class="col-sm-2 col-sm-2">
+                                                                                        <label class="radio-inline">
+                                                                                            <% if (order.deliverStatus == i){ %>
+                                                                                                <input type="radio" name="status_value" value="<%= i %>" checked><%= statusList[i] %>
+                                                                                            <% }else{ %>
+                                                                                                <input type="radio" name="status_value" value="<%= i %>"><%= statusList[i] %>
+                                                                                            <% } %>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                <% } %>
+                                                                                <div class="col-md-1 col-sm-1">
+                                                                                    <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                        
                                                                     </div>
                                                                 </div>
                                                                 <div class="x_content">

@@ -1,16 +1,61 @@
 const userServices = require('../models/service/userService');
 const adminServices = require('../models/service/adminService');
+const passport = require("passport");
 
-exports.getLogin = async function(req, res, next){
-    res.render('login');
+
+exports.getLogin = (req, res, next) => {
+    const message = req.flash("error")[0];
+    if (!req.isAuthenticated()) {
+      res.render("login", {
+        title: "Đăng nhập",
+        user: req.user,
+        message: `${message}`
+      });
+    } else {
+      res.redirect("/products/list");
+    }
+  };
+  
+exports.postLogin = (req, res, next) => {
+    passport.authenticate("local-signin", {
+      successReturnToOrRedirect: "/products/list",
+      failureRedirect: "/login",
+      failureFlash: true
+    })(req, res, next);
+  };
+  
+  exports.getLogout = (req, res, next) => {
+    req.logout();
+    res.redirect("/");
+  };
+
+
+exports.getChangePassword = async function(req, res, next){
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+        return;
+    }
+    const message = req.flash("error")[0];
+    res.render('changePassword',{
+        message: `${message}`
+    });
+    
 }
 
-exports.getResetPassword = async function(req, res, next){
-    //res.render('login');
+exports.postChangePassword = async function(req, res, next){
+    passport.authenticate("local-change-pass", {
+        successReturnToOrRedirect: "/login",
+        failureRedirect: "/change-password",
+        failureFlash: true
+      })(req, res, next);
 }
+
 
 exports.getUsers = async function (req, res, next){
-    const page = +req.query.page || 1;
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+    }else{
+        const page = +req.query.page || 1;
     const search_value = req.query.search;
     const filter = {};
 
@@ -40,11 +85,16 @@ exports.getUsers = async function (req, res, next){
         currentPage: paginate.page,
         totalPages: paginate.totalPages
     });
+    }
 }
 
 exports.getUserProfile = async function (req, res, next){
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+        return;
+    }
     const user = await userServices.getUser(req.params.id);
-    res.render('userProfile',{
+        res.render('userProfile',{
         id: user._id,
         username: user.username,
         firstName: user.firstName,
@@ -55,25 +105,38 @@ exports.getUserProfile = async function (req, res, next){
         avatar: user.avatar
     });
 }
+    
 exports.lockUser = async function(req, res, next){
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+        return;
+    }
     const id = req.body.id;
     await userServices.lockUser(id);
     res.redirect('/users/detail/'+id);
 }
 exports.getAdminProfile = async function (req, res, next) {
-    const admin = await adminServices.getAdmin('5ffd63ef70359aa790bdbc85');
-    res.render('adminProfile',{
-        id: admin._id,
-        username: admin.username,
-        firstName: admin.firstName,
-        lastName: admin.lastName,
-        phoneNumber: admin.phoneNumber,
-        email: admin.email,
-        avatar: admin.avatar
-    });
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+        return;
+    }
+    const admin = await adminServices.getAdmin(req.user.id);
+        res.render('adminProfile',{
+            id: admin._id,
+            username: admin.username,
+            firstName: admin.firstName,
+            lastName: admin.lastName,
+            phoneNumber: admin.phoneNumber,
+            email: admin.email,
+            avatar: admin.avatar
+        });
 }
 
 exports.updateAdminProfile = async function(req, res, next){
+    if (!req.isAuthenticated()) {
+        res.redirect("/");
+        return;
+    }
     await adminServices.update(req.body.id,req.body.firstName,req.body.lastName,req.body.email,req.body.phoneNumber,req.body.avatar);
     res.redirect('/admin/detail');
 }
