@@ -195,12 +195,7 @@
                                                                 <td><%= product.stock %></td>
                                                                 <td><%= product.price %></td>
                                                                 <td><%= product.dateAdded%></td>
-                                                                <% if (product.isDeleted){ %>
-                                                                    <td>true</td>
-                                                                <% }else{ %>
-                                                                    <td>false</td>
-                                                                <% } %>
-                                                                <!-- <td><%= product.sale %></td> -->
+                                                                <td><%= product.sale %></td>
                                                                 <td>
                                                                     <a href="detail/<%= product._id %>"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Chỉnh sửa</button></a>
                                                                 </td>

@@ -78,12 +78,14 @@ exports.update = async function(id, name, description, size, subCategory, stock,
             }
         })
     });
+    let today = new Date();
     await products.updateOne({_id: ObjectId(id)},{ $set:{
         name: name,
         description: description,
         size: sizes,
         "category.main": mainCategory,
         "category.sub": subCategory,
+        dateAdded: today,
         stock: stock,
         price: price,
         color: colors,

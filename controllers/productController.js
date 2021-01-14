@@ -30,7 +30,7 @@ exports.getProducts = async function(req, res, next){
     const label_value = req.query.label;
     const page = +req.query.page || 1;
     const search_value = req.query.search;
-    const filter = {};
+    const filter = {isDeleted: false};
     let length_value;
     if (req.query.length){
         length_value = req.query.length;
@@ -45,9 +45,12 @@ exports.getProducts = async function(req, res, next){
     {
         filter['category.sub']= new RegExp(req.params.subCategory, "i");
     }
-    if (price_value && price_value != -1)
+    if (price_value && price_value != -1 && price_value < 4)
     {
         filter['price'] = {$gt: priceList[price_value][0], $lt: priceList[price_value][1]};
+    }
+    if (price_value == 4){
+        filter['price'] = {$gt: priceList[3][1]};
     }
     if (size_value && size_value != -1)
     {
@@ -61,6 +64,7 @@ exports.getProducts = async function(req, res, next){
     {
         filter['name'] = new RegExp(`${search_value}`, "i");
     }
+    
     const paginate = await productServices.listProducts(filter, page, itemPerPageList[length_value]);
     res.render("products", {
         categories: categoriesList,
