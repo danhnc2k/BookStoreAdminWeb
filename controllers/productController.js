@@ -131,15 +131,10 @@ exports.getAddProductForm = async function (req, res, next) {
     }
     const categoriesList = await categoryServices.listCategories();
     const labelsList = await labelServices.listLabels();
-    var message = undefined;
-    if (req.session.error){
-        message = req.session.error;
-        req.session.error = undefined;
-    }
+
     res.render('addProduct',{
         categories: categoriesList,
-        labels: labelsList,
-        message,
+        labels: labelsList
     });
 }
 exports.getProductDetail = async function(req, res, next){
@@ -195,29 +190,10 @@ exports.addProduct = async function(req, res, next){
         res.redirect("/");
         return;
     }
-    var message = [];
-    if (req.body.name == ""){
-        message.push("Vui lòng không để trống trường Name");
-    }
-    if (req.body.subCategory == -1){
-        message.push("Vui lòng không để trống trường SubCategory");
-    }
-    if (req.body.label == -1){
-        message.push("Vui lòng không để trống trường Label");
-    }
-    if (req.body.image == ""){
-        message.push("Vui lòng không để trống trường Image");
-    }
-    if (message.length != 0){
-        req.session.error = message;
-        res.redirect('back');
-    }
-    else {
-        await productServices.add(req.body.name,req.body.description,req.body.size,
-            req.body.subCategory,req.body.stock,req.body.price,req.body.color,req.body.image,
-            req.body.material,req.body.label,req.body.sale,req.body.cost);
-        res.redirect('/products/list');
-    }
+    await productServices.add(req.body.name,req.body.description,req.body.size,
+        req.body.subCategory,req.body.stock,req.body.price,req.body.color,req.body.image,
+        req.body.material,req.body.label,req.body.sale,req.body.cost);
+    res.redirect('/products/list');
 }
 
 exports.updateProduct = async function(req, res, next){
