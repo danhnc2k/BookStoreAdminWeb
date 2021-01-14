@@ -14,9 +14,7 @@
                 <div class="right_col" role="main" style="min-height: 454px;">
                     <div class="">
                         <div class="page-title">
-                            <div class="title_left">
-                                <h3>Users <small>Some examples to get you started</small></h3>
-                            </div>
+                           
                            
                         </div>
         
@@ -26,7 +24,7 @@
                             <div class="col-md-12 col-sm-12 ">
                                 <div class="x_panel">
                                     <div class="x_title">
-                                        <h2> List Users <small>Users</small></h2>
+                                        <h2> Danh sách người dùng</h2>
         
                                         <div class="clearfix"></div>
                                     </div>
@@ -34,14 +32,12 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="card-box table-responsive">
-                                                    <p class="text-muted font-13 m-b-30">
-                                                        DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>
-                                                    </p>
+                                                   
                                                     <div id="datatable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap no-footer">
                                                         <div class="row">
                                                             <form method="GET">
                                                                 <div class="form-group row">
-                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-3" for="">Show</label>
+                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-3" for="">Hiển thị</label>
                                                                     <div class="col-md-9 col-sm-9 col-xs-9">
                                                                         <select name="length" aria-controls="datatable" class="form-control">
                                                                             <% var index; for (index = 0; index < lengths.length; index++){ %>
@@ -55,10 +51,10 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="input-group">
-                                                                    <input type="text" class="form-control" name="search" value="<%= searchValue %>" placeholder="Search for...">
+                                                                    <input type="text" class="form-control" name="search" value="<%= searchValue %>" placeholder="Tìm kiếm...">
                                                                     <a href="?search=<%= searchValue %>&length=<%= lengthValue %>&page=<%= currentPage %>">
                                                                     <span class="input-group-btn">
-                                                                        <button class="btn btn-secondary" type="submit">Search</button>
+                                                                        <button class="btn btn-secondary" type="submit">Tìm</button>
                                                                     </span>
                                                                     </a>
                                                                 </div>
@@ -71,22 +67,22 @@
                                                                     <thead>
                                                                         <tr role="row">
                                                                             <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 128px;">
-                                                                                Username
+                                                                                Tên đăng nhập
                                                                             </th>
                                                                             <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 210px;">
-                                                                                First Name
+                                                                                Tên
                                                                             </th>
                                                                             <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 93px;">
-                                                                                Last Name
+                                                                                Họ
                                                                             </th>
                                                                             <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 42px;">
-                                                                                Phone Number
+                                                                                Số điện thoại
                                                                             </th>
                                                                             <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 85px;">
                                                                                 Email
                                                                             </th>
                                                                             <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 71px;">
-                                                                                Task
+                                                                                Tác vụ
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -109,22 +105,22 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-sm-5">
-                                                                <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Total result: <%= totalUsers %></div>
+                                                                <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Tổng số kết quả: <%= totalUsers %></div>
                                                             </div>
                                                             <div class="col-sm-7">
                                                                 <nav aria-label="Page navigation example">
                                                                     <ul class="pagination justify-content-end">
-                                                                        <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&length=<%= lengthValue %>&page=1">First Page</a></li>
+                                                                        <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&length=<%= lengthValue %>&page=1">Trang Đầu</a></li>
                                                                         <% if(hasPrevPage){ %>
-                                                                        <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&length=<%= lengthValue %>&page=<%= prevPage %>">Previous</a></li>
+                                                                        <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&length=<%= lengthValue %>&page=<%= prevPage %>">Trang Trước</a></li>
                                                                         <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&length=<%= lengthValue %>&page=<%= currentPage - 1 %>"><%= currentPage - 1 %></a></li>
                                                                         <% } %>
                                                                         <li class="page-item active"><a class="page-link" href="?search=<%= searchValue %>&length=<%= lengthValue %>&page=<%= currentPage %>"><%= currentPage %></a></li>
                                                                         <% if(hasNextPage){ %>
                                                                         <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&length=<%= lengthValue %>&page=<%= currentPage + 1 %>"><%= currentPage + 1 %></a></li>
-                                                                        <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&length=<%= lengthValue %>&page=<%= nextPage %>">Next</a></li>
+                                                                        <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&length=<%= lengthValue %>&page=<%= nextPage %>">Trang Sau</a></li>
                                                                         <% } %>
-                                                                        <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&length=<%= lengthValue %>&page=<%= totalPages %>">Last Page</a></li>
+                                                                        <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&length=<%= lengthValue %>&page=<%= totalPages %>">Trang Cuối</a></li>
                                                                     </ul>
                                                                 </nav>
                                                             </div>

@@ -11,11 +11,7 @@
           <!-- page content -->
           <div class="right_col" role="main">
             <div class="">
-              <div class="page-title">
-                <div class="title_left">
-                  <h3>Admin Profile</h3>
-                </div>
-              </div>
+              
               
               <div class="clearfix"></div>
   
@@ -23,7 +19,7 @@
                 <div class="col-md-12 col-sm-12 ">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2>Information</h2>
+                      <h2>Thông tin quản trị viên</h2>
                       <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -38,44 +34,48 @@
   
                     </div>
                     <div style="font-size: 20px;" class="col-md-5">
-                      <form action="/task/update" method="POST">
+                      <form class="form-group" action="/products/task/update" method="POST" name="form" onchange="verifyAdmin(this.form)">
                         <div class="container">
                           <input type="text" class="form-control" name="id" value="<%= id %>" hidden>
                           <div class="form-group row">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-3">First Name</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Tên</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                              <input type="text" class="form-control" name="firstName" value="<%= firstName %>">
+                              <input type="text" class="form-control" name="firstName" id="firstName" value="<%= firstName %>" oninput="check(this.id)">
+                              <h4 style="color:red; font-style:italic" id="notificationFirName"></h4>
                             </div>
                           </div>
                           <div class="form-group row">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Last Name</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Họ</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                              <input type="text" class="form-control" name="lastName" value="<%= lastName %>">
+                              <input type="text" class="form-control" name="lastName" id="lastName" value="<%= lastName %>" oninput="check(this.id)">
+                              <h4 style="color:red; font-style:italic" id="notificationLastName"></h4>
                             </div>
                           </div>
                           <div class="form-group row">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Phone</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Số điện thoại</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                              <input type="text" class="form-control" name="phoneNumber" value="<%= phoneNumber %>">
+                              <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" value="<%= phoneNumber %>" oninput="check(this.id)">
+                              <h4 style="color:red; font-style:italic" id="notificationPhone"></h4>
                             </div>
                           </div>
                           <div class="form-group row">
                             <label class="control-label col-md-3 col-sm-3 col-xs-3">Email</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                              <input type="text" class="form-control" name="email" value="<%= email %>">
+                              <input type="text" class="form-control" name="email" id="email" value="<%= email %>" oninput="check(this.id)">
+                              <h4 style="color:red; font-style:italic" id="notificationEmail"></h4>
                             </div>
                           </div>
                           <div class="form-group row">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Avatar</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Ảnh đại diện</label>
                             <div class="col-md-9 col-sm-9 col-xs-9">
-                              <input type="text" class="form-control" name="avatar" value="<%= avatar %>">
+                              <input type="text" class="form-control" name="avatar" id="avatar" value="<%= avatar %>" oninput="check(this.id)">
+                              <h4 style="color:red; font-style:italic" id="notificationAva"></h4>
                             </div>
                           </div>
                         </div>
-                        <button  type="submit" class="btn btn-primary">Update</button>
-                        <a href="/products/list"><button type="button"  class="btn btn-success">Turn Back</button></a>
+                        <button  type="submit" id="btn-update" class="btn btn-primary"  hidden>Cập nhật</button>
                       </form>
-                      <a href="/change-password"><button type="button"  class="btn btn-success">Change password</button></a>
+                      <a href="/change-password"><button type="button"  class="btn btn-success">Đổi mật khẩu</button></a>
                     </div>
                   </div>
                 </div>

@@ -12,7 +12,7 @@
                     <div class="col-md-12 col-sm-12 ">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Default Example <small>Users</small></h2>
+                                <h2>Danh sách sản phẩm</h2>
 
                                 <div class="clearfix"></div>
                             </div>
@@ -57,10 +57,10 @@
                                                 <div class="form-group row">
                                                     <div style="margin:0;padding:0 0 0 0px" class="col-md-5 col-sm-5   form-group row pull-right top_search">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" name="search" value="<%= searchValue %>" placeholder="Search for...">
+                                                            <input type="text" class="form-control" name="search" value="<%= searchValue %>" placeholder="Tìm kiếm...">
                                                              <a href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= currentPage %>">
                                                             <span class="input-group-btn">
-                                                            <button class="btn btn-secondary" type="submit">Search</button>
+                                                            <button class="btn btn-secondary" type="submit">Tìm</button>
                                                             </span>
                                                             </a>
                                                         </div>
@@ -71,9 +71,9 @@
                                                       <div class="col-md-9 col-sm-9 col-xs-9">
                                                         <select name="price" class="form-control">
                                                             <% if (priceValue) { %>
-                                                                <option value ="-1">All</option>
+                                                                <option value ="-1">Tất cả</option>
                                                             <% } else { %>
-                                                                <option value ="-1" selected>All</option>
+                                                                <option value ="-1" selected>Tất cả</option>
                                                             <% } %>
                                                             <% var index; for (index = 0; index < prices.length; index++){ %>
                                                                 <% if (priceValue == index) { %>
@@ -95,9 +95,9 @@
                                                           <div class="col-md-9 col-sm-9 col-xs-9">
                                                             <select name="size" class="form-control">
                                                                 <% if (sizeValue) { %>
-                                                                    <option value ="-1">All</option>
+                                                                    <option value ="-1">Tất cả</option>
                                                                 <% } else { %>
-                                                                    <option value ="-1" selected>All</option>
+                                                                    <option value ="-1" selected>Tất cả</option>
                                                                 <% } %>
                                                                 <% var index; for (index = 0; index < sizes.length; index++){ %>
                                                                     <% if (sizeValue == index) { %>
@@ -114,9 +114,9 @@
                                                           <div class="col-md-9 col-sm-9 col-xs-9">
                                                             <select name="label" class="form-control">
                                                                 <% if (labelValue) { %>
-                                                                    <option value ="-1">All</option>
+                                                                    <option value ="-1">Tất cả</option>
                                                                 <% } else { %>
-                                                                    <option value ="-1" selected>All</option>
+                                                                    <option value ="-1" selected>Tất cả</option>
                                                                 <% } %>
                                                                 <% var index; for (index = 0; index < labels.length; index++){ %>
                                                                     <% if (labelValue == index) { %>
@@ -129,7 +129,7 @@
                                                           </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label class="control-label col-md-3 col-sm-3 col-xs-3" for="">Show</label>
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-3" for="">Hiển thị</label>
                                                             <div class="col-md-9 col-sm-9 col-xs-9">
                                                                 <select name="length" aria-controls="datatable" class="form-control">
                                                                     <% var index; for (index = 0; index < lengths.length; index++){ %>
@@ -166,22 +166,22 @@
                                                             <tr role="row">
                                                                 <th class="sorting" tabindex="0" aria-controls="datatable-checkbox" rowspan="1" colspan="1" style="width: 13px;"><input type="checkbox" onclick="toggle(this)"></th>
                                                                 <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 128px;">
-                                                                    Name
+                                                                    Tên sản phẩm
                                                                 </th>
                                                                 <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 210px;">
-                                                                    Stock
+                                                                    Tồn kho
                                                                 </th>
                                                                 <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 93px;">
-                                                                    Price
+                                                                    Giá bán
                                                                 </th>
                                                                 <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 42px;">
-                                                                    dateAdded
+                                                                    Ngày cập nhật
                                                                 </th>
                                                                 <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 85px;">
-                                                                    Sale
+                                                                    Giảm giá
                                                                 </th>
                                                                 <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 71px;">
-                                                                    Task
+                                                                    Tác vụ
                                                                 </th>
                                                             </tr>
                                                             </thead>
@@ -202,7 +202,7 @@
                                                                 <% } %>
                                                                 <!-- <td><%= product.sale %></td> -->
                                                                 <td>
-                                                                    <a href="detail/<%= product._id %>"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</button></a>
+                                                                    <a href="detail/<%= product._id %>"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Chỉnh sửa</button></a>
                                                                 </td>
                                                             </tr>
                                                             <% }); %>
@@ -212,22 +212,22 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-sm-5">
-                                                        <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Total result: <%= totalProducts %></div>
+                                                        <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Tổng số kết quả: <%= totalProducts %></div>
                                                     </div>
                                                     <div class="col-sm-7">
                                                         <nav aria-label="Page navigation example">
                                                             <ul class="pagination justify-content-end">
-                                                                <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=1">First Page</a></li>
+                                                                <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=1">Trang Đầu</a></li>
                                                                 <% if(hasPrevPage){ %>
-                                                                <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= prevPage %>">Previous</a></li>
+                                                                <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= prevPage %>">Trang Trước</a></li>
                                                                 <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= currentPage - 1 %>"><%= currentPage - 1 %></a></li>
                                                                 <% } %>
                                                                 <li class="page-item active"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= currentPage %>"><%= currentPage %></a></li>
                                                                 <% if(hasNextPage){ %>
                                                                 <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= currentPage + 1 %>"><%= currentPage + 1 %></a></li>
-                                                                <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= nextPage %>">Next</a></li>
+                                                                <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= nextPage %>">Trang Sau</a></li>
                                                                 <% } %>
-                                                                <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= totalPages %>">Last Page</a></li>
+                                                                <li class="page-item"><a class="page-link" href="?search=<%= searchValue %>&price=<%= priceValue %>&size=<%= sizeValue %>&label=<%= labelValue %>&length=<%= lengthValue %>&page=<%= totalPages %>">Trang Cuối</a></li>
                                                             </ul>
                                                         </nav>
                                                     </div>

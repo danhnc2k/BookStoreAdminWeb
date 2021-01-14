@@ -9,20 +9,22 @@
         <div class="main_container">
         <%- include('partials/navigation.ejs') %>
             <div class="right_col" role="main" style="min-height: 454px;">
+            
                 <form method="GET">
                     <div class="form-group row">
                         <div class="form-group row">
-                            <label class="control-label col-md-5 col-sm-5 col-xs-5">Nhập năm(yyyy)</label>
+                            <h3 style="padding-left:10px">Nhập năm(yyyy)</h3>
                             <div class="col-md-9 col-sm-9 col-xs-9">
                                 <input type="text" class="form-control" name="yearInput" value="<%= yearInput %>">
                             </div>
+                            <div class="col-md-3 col-sm-1">
+                                <button type="submit" class="btn btn-primary btn-sm">Apply</button>
+                            </div>
                         </div>
-                        <div class="col-md-1 col-sm-1">
-                            <button type="submit" class="btn btn-primary btn-sm">Apply</button>
-                        </div>
+                        
                     </div>
                 </form>
-                <div class="col-md-5 col-sm-5">
+                <div class="col-md-5 col-sm-5" hidden>
                     <% for (var index=0; index < 12; index++){ %>
                         <input type="text" name="monthArr[]" value="<%= monthProfit[index] %>" hidden/>
                     <% } %>
@@ -42,20 +44,28 @@
                         <input type="text" name="categoryArr[]" value="<%= categoryProfit[index] %>" hidden/>
                     <% } %>
                 </div>
-                <div class="col-md-5 col-sm-5">
+                <div class="x_panel">
+                <div class="col-md-5 col-sm-5" style="margin-left:300px">
                     <canvas id="monthChart" width="200" height="200"></canvas>
                 </div>
-                <div class="col-md-5 col-sm-5">
+                </div>
+                <div class="x_panel">
+                <div class="col-md-5 col-sm-5" style="margin-left:300px">
                     <canvas id="quarterChart" width="200" height="200"></canvas>
                 </div>
-                <div class="col-md-5 col-sm-5">
+                </div>
+                <div class="x_panel">
+                <div class="col-md-5 col-sm-5" style="margin-left:300px">
                     <canvas id="yearChart" width="200" height="200"></canvas>
                 </div>
-                <div class="col-md-5 col-sm-5">
+                </div>
+                <div class="x_panel">
+                <div class="col-md-5 col-sm-5" style="margin-left:300px">
                     <canvas id="categoryChart" width="200" height="200"></canvas>
                 </div>
+                </div>
             </div>
-        
+                  
         <footer>
             <%- include('partials/footer.ejs') %>
         </footer>

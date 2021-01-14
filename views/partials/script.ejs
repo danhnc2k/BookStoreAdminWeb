@@ -24,7 +24,7 @@
     } else if (id == "email"){
         document.getElementById('notificationEmail').innerHTML = "Hãy nhập dữ liệu ở ô Email";
     } else if (id == "avatar"){
-        document.getElementById('notificationAva').innerHTML = "Hãy nhập dữ liệu ở ô Avatar";
+        document.getElementById('notificationAva').innerHTML = "Hãy nhập liên kết ở ô Avatar";
     } else if (id == "name"){
         document.getElementById('notificationName').innerHTML = "Hãy nhập dữ liệu ở ô Name";
     } else if (id == "description"){
@@ -36,7 +36,7 @@
     } else if (id == "material"){
         document.getElementById('notificationMaterial').innerHTML = "Hãy nhập dữ liệu ở ô Material";
     } else if (id == "image"){
-        document.getElementById('notificationImage').innerHTML = "Hãy nhập dữ liệu ở ô Image";
+        document.getElementById('notificationImage').innerHTML = "Hãy nhập liên kết ở ô Image";
     } else if (id == "price"){
         document.getElementById('notificationPrice').innerHTML = "Hãy nhập số ở ô Price";
     } else if (id == "cost") {
@@ -112,8 +112,13 @@
             document.getElementById("notificationEmail").innerHTML = "";
             return true;
         } else if (id == "avatar") {
-            document.getElementById("notificationAva").innerHTML = "";
-            return true;
+            if (number[0]=="h" && number[1]=="t" && number[2]=="t" && number[3]=="p"){
+                document.getElementById("notificationAva").innerHTML = "";
+                return true;
+            }else {
+                document.getElementById("notificationAva").innerHTML = "Dữ liệu nhập vào không phải liên kết";
+                return false;
+            }
         } else if (id == "name") {
             document.getElementById("notificationName").innerHTML = "";
             return true;
@@ -130,30 +135,47 @@
             document.getElementById("notificationMaterial").innerHTML = "";
             return true;
         } else if (id == "image") {
-            document.getElementById("notificationImage").innerHTML = "";
-            return true;
+            if (number[0]=="h" && number[1]=="t" && number[2]=="t" && number[3]=="p"){
+                document.getElementById("notificationImage").innerHTML = "";
+                return true;
+            }else {
+                document.getElementById("notificationImage").innerHTML = "Dữ liệu nhập vào không phải liên kết";
+                return false;
+            }   
         }
         
     } else {
+        if (id == "avatar") {
+            document.getElementById("notificationAva").innerHTML = "Dữ liệu nhập vào không phải liên kết";
+            return false;
+        } else
+        if (id == "image") {
+            document.getElementById("notificationImage").innerHTML = "Dữ liệu nhập vào không phải liên kết";
+            return false;
+        } else
         if (id == "phoneNumber") {
             document.getElementById("notificationPhone").innerHTML = "";
+            return true;
         } else
         if (id == "price") {
             document.getElementById("notificationPrice").innerHTML = "";
+            return true;
         } else 
         if (id == "cost") {
             document.getElementById("notificationCost").innerHTML = "";
+            return true;
         } else 
         if (id == "stock") {
             document.getElementById("notificationStock").innerHTML = "";
+            return true;
         } else 
         if (id == "buyCount") {
             document.getElementById("notificationBuyCount").innerHTML = "";
+            return true;
         } else {
             document.getElementById("notificationSale").innerHTML = "";
-            
+            return true;
         }
-        return true;
     }
 }
 function verify(form) {
