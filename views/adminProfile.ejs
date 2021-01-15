@@ -23,18 +23,13 @@
                       <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                      <div class="col-md-3 col-sm-3  profile_left">
+                      <div class="col-md-2 col-sm-2 profile_left">
                         <div class="profile_img">
-                          <div id="crop-avatar">
-                            <!-- Current avatar -->
-                            <img class="img-responsive avatar-view" src="images/picture.jpg" alt="Avatar" title="Change the avatar">
-                          </div>
+                          <img class="img-responsive avatar-view" src="<%= avatar %>" width="200" height="200">
                         </div>
-                        
-  
-                    </div>
+                      </div>
                     <div style="font-size: 20px;" class="col-md-5">
-                      <form class="form-group" action="/products/task/update" method="POST" name="form" onchange="verifyAdmin(this.form)">
+                      <form class="form-group" action="/task/update" method="POST" name="form" onchange="verifyAdmin(this.form)">
                         <div class="container">
                           <input type="text" class="form-control" name="id" value="<%= id %>" hidden>
                           <div class="form-group row">
