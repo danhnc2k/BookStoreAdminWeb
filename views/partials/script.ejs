@@ -135,13 +135,8 @@
             document.getElementById("notificationMaterial").innerHTML = "";
             return true;
         } else if (id == "image") {
-            if (number[0]=="h" && number[1]=="t" && number[2]=="t" && number[3]=="p"){
-                document.getElementById("notificationImage").innerHTML = "";
-                return true;
-            }else {
-                document.getElementById("notificationImage").innerHTML = "Dữ liệu nhập vào không phải liên kết";
-                return false;
-            }   
+            document.getElementById("notificationImage").innerHTML = "";
+            return true;
         }
         
     } else {
