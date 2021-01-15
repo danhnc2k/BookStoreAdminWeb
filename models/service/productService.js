@@ -23,10 +23,10 @@ exports.getProduct = async function(id){
 exports.add = async function(name, description, size, subCategory, stock, price, color, image, material, label, sale, cost){
     const categoriesList = await categoryServices.listCategories();
     let mainCategory;
-    let sizes = size.substring(0, size.length-1).split(';');
-    let colors = color.substring(0, color.length-1).split(';');
-    let images = image.substring(0, image.length-1).split(';');
-    let materials = material.substring(0, material.length-1).split(';');
+    let sizes = size.split(';');
+    let colors = color.split(';');
+    let images = image.split(';');
+    let materials = material.split(';');
     categoriesList.forEach(function(main){
         main.childName.forEach(function(sub){
             if (sub._id.toString() == subCategory)
@@ -66,10 +66,10 @@ exports.add = async function(name, description, size, subCategory, stock, price,
 exports.update = async function(id, name, description, size, subCategory, stock, price, color, image, material, buyCount, label, sale, cost){
     const categoriesList = await categoryServices.listCategories();
     let mainCategory;
-    let sizes = size.substring(0, size.length-1).split(';');
-    let colors = color.substring(0, color.length-1).split(';');
-    let images = image.substring(0, image.length-1).split(';');
-    let materials = material.substring(0, material.length-1).split(';');
+    let sizes = size.split(';');
+    let colors = color.split(';');
+    let images = image.split(';');
+    let materials = material.split(';');
     categoriesList.forEach(function(main){
         main.childName.forEach(function(sub){
             if (sub._id.toString() == subCategory)
